@@ -1,0 +1,257 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.create__agreement__container{
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid black;
+  min-height: 90vh;
+  padding: 1rem;
+}
+.sections__title{
+  width: 100%;
+  margin: 1rem auto;
+  /* padding: 1rem; */
+}
+.sections__title h3{
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.agreement__inputs{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  margin: 0.6rem 0;
+}
+.agreement__inputs label{
+ height: 2rem;
+ font-size: 1.2rem;
+}
+.agreement__inputs input{
+ height: 3.5rem;
+ border: none;
+ background: none;
+ background-color: rgba(255, 255, 255, 0.3);
+ box-shadow: 5px 5px 15px rgba(100, 100, 100, 0.1);
+ border-radius: 0.4rem;
+ outline: none;
+ padding-left: 0.5rem;
+ font-size: 1.2em;
+}
+.agreement__inputs textarea{
+ height: 7.5rem;
+ border: none;
+ background: none;
+ background-color: rgba(255, 255, 255, 0.3);
+ box-shadow: 5px 5px 15px rgba(100, 100, 100, 0.1);
+ border-radius: 0.4rem;
+ outline: none;
+ padding: 0.6rem 0.5rem;
+ resize: none;
+    font-size: 1rem;
+}
+.flex__end{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content:flex-end;
+}
+.agreement__inputs__group{
+}
+.agreements__btn{
+  height: 3rem;
+  border: none;
+  background: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 5px 5px 15px rgba(100, 100, 100, 0.1);
+  border-radius: 0.4rem;
+  outline: none;
+  padding: 0.6rem 0.5rem;
+  width: 35%;
+  font-size: 1.1em;
+}
+.agreements__btn:hover{
+  cursor: pointer;
+  background-color: rgba(235, 235, 235, 0.3);
+}
+.agreement__inputs__group2{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* padding: 1rem; */
+  margin: 1rem 0;
+}
+.agreement__inputs__group,
+.agreement__inputs{
+  padding: 0.2rem;
+}
+/* //////////////////////////////////////////// */
+.post__input__skill{
+  margin: 1rem;
+}
+.post__input__skill h3{
+  font-size: 1.5em;
+  font-weight: normal;
+}
+.post_skills{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+.skills_container{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.skill{
+  width: auto;
+  padding: 0.1rem 0.4rem;
+  margin: 0.3rem 0.3rem;
+  padding-right: 0.1rem;
+  border: 1px solid black;
+  display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+border-radius: 0.3rem;
+}
+.skill span {
+  margin-right: 0.1rem;
+  padding-right: 0.3rem;
+  border-right: 1px solid gray;
+}
+
+.skill button{
+  border: none;
+  background: none;
+  width: 1rem;
+  font-size: 1.1em;
+}
+/* ===========Drop Select style================ */
+#skills {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background-image: none;
+
+}
+/* Remove IE arrow */
+#skills::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.skills_options {
+  position: relative;
+  display: flex;
+  width: 40%;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+#skills {
+  flex: 1;
+  padding: 0 .5em;
+  color: #2c3e50;
+  cursor: pointer;
+}
+/* Arrow */
+.skills_options::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #e6e6e6;
+  cursor: pointer;
+  border-radius: 0.24rem;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.skills_options:hover::after {
+  color: #5c5c5c;
+}
+
+/* ////////////////////////////////// */
+.btn__delete{
+  height: 1.5rem;
+  display: inline-block;
+  padding: 0.2rem 0.4rem ;
+  color: #ffffff;
+  background-color: rgb(224, 0, 0);
+  box-shadow: 5px 5px 15px rgba(255, 95, 95, 0.1);
+  font-size: 0.8em;
+  border-radius: 0.3rem;
+  margin-left: 1rem;
+  cursor: pointer
+  ;
+}
+.btn__delete:hover{
+  background-color: rgb(255, 69, 69);
+
+}
+
+
+@media (max-width:768px) {
+  .create__agreement__container{
+    width: 95%;
+    margin: 1rem auto 6rem auto;
+  }
+}
+
+@media (max-width:600px) {
+  .create__agreement__container{
+    width: 95%;
+    margin: 1rem auto 5rem auto;
+  }
+  .agreement__detail{
+    flex-direction: column;
+  }
+  .agreements__btn{
+    width: auto;
+
+  }
+  .post_skills{
+    flex-wrap: wrap;
+  }
+  .post__input__skill{
+    margin: 1rem 0;
+  }
+  .skills_container{
+    width: 100%;
+  }
+  .skills_options{
+    width: 100%;
+  }
+
+
+    .skills_options{
+      width:100%
+    }
+    #skills{
+      flex: unset;
+      width:100%
+    }
+    .post__range{
+      width:100%;
+    }
+    .post__range .price{
+      width: 100%;
+    }
+}

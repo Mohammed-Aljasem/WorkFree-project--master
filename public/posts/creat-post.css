@@ -1,0 +1,330 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+
+
+}
+
+.create__post_container{
+  width: 90%;
+  margin:0 auto;
+  border:1px solid black;
+  height: 100vh;
+  border-radius:1rem;
+  padding:1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.post__input__title{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.post__input__title label{
+  font-size: 1.5em;
+  margin-bottom: 0.5rem;
+}
+.post__input__title input{
+  font-size: 1.3em;
+  height: 3rem;
+  padding-left: 0.5rem ;
+  border: none;
+  background: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+  2px 2px 25px rgba(199, 199, 199, 0.1),
+  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  border-radius: 0.8rem;
+  outline: none;
+}
+.post__input__desc{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.post__input__desc label{
+  font-size: 1.5em;
+  margin-bottom: 0.5rem;
+}
+.post__input__desc textarea{
+  margin-top: 0.5rem;
+  font-size: 1.5em;
+  height: 8rem;
+  padding:0.6rem 0.5rem ;
+  border: none;
+  background: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+  2px 2px 25px rgba(199, 199, 199, 0.1),
+  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  border-radius: 0.8rem;
+  resize: none;
+  outline: none;
+}
+/* /////////////////////////////////// */
+.post__input__image{
+  margin: 1rem;
+
+}
+.post__input__image label{
+  font-size: 1.5em;
+}
+
+.upload__image{
+  margin-top:1rem;
+  display: flex;
+  flex-direction: row;
+}
+.upload__image input{
+  width: 92%;
+  font-size: 1.3em;
+  height: 3rem;
+  padding-left: 0.5rem ;
+  border: none;
+  background: none;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+  2px 2px 25px rgba(199, 199, 199, 0.1),
+  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  border-radius: 0.8rem;
+  outline: none;
+}
+
+.upload__btn{
+  width: 100%;
+  font-size: 1.3em;
+  margin-left: 2%;
+  padding: 0.8rem 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+.upload:hover,.upload__btn:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+/* /////////////////////////////////// */
+.post__input__skill{
+  margin: 1rem;
+}
+.post__input__skill h3{
+  font-size: 1.5em;
+  font-weight: normal;
+}
+.post_skills{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+.skills_container{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.skill{
+  width: auto;
+padding: 0.1rem 0.4rem;
+margin: 0.3rem 0.3rem;
+padding-right: 0.1rem;
+border: 1px solid black;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+border-radius: 0.3rem;
+}
+.skill span {
+  margin-right: 0.1rem;
+  padding-right: 0.3rem;
+  border-right: 1px solid gray;
+}
+
+.skill button {
+  border: none;
+  background: none;
+  width: 1rem;
+  font-size: 1.1em;
+}
+/* ===========Drop Select style================ */
+#skills {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background-image: none;
+
+}
+/* Remove IE arrow */
+#skills::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.skills_options {
+  position: relative;
+  display: flex;
+  width: 40%;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+#skills {
+  flex: 1;
+  padding: 0 .5em;
+  color: #2c3e50;
+  cursor: pointer;
+}
+/* Arrow */
+.skills_options::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #e6e6e6;
+  cursor: pointer;
+  border-radius: 0.24rem;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+/* Transition */
+.skills_options:hover::after {
+  color: #5c5c5c;
+}
+
+
+
+/* ===========Drop Select style================ */
+
+
+.post__input__budget{
+  margin: 1rem;
+}
+.post__input__budget h3{
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+.post__range{
+  display: flex;
+  flex-direction: row;
+}
+.post__range .price{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 15%;
+}
+.price input{
+  margin-top: 0.5rem;
+  font-size: 1.5em;
+  height: 2.5rem;
+  padding:0.6rem 0.5rem ;
+  border: none;
+  background: none;
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+  2px 2px 25px rgba(199, 199, 199, 0.1),
+  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  border-radius: 0.8rem;
+  resize: none;
+  outline: none;
+}
+.post__input__btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+.post__input__btn button , .btn__apply{
+  width:7rem;
+  height: 3rem;
+  font-size: 1.5em;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  background: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.post__input__btn a{
+    cursor: pointer;
+}
+.post__input__btn button:hover, .btn__apply:hover{
+  background-color: rgba(255, 255, 255, 0.3);
+}
+@media (max-width:1100px){}
+.create__post_container{
+ height: auto;
+}
+
+
+@media (max-width:768px) {
+  .post_skills{
+    flex-direction: column;
+  }
+  .skills_container{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .skills_options{
+    width:50%
+  }
+  #skills{
+    flex: unset;
+    width:100%
+  }
+  .post__range .price{
+    width: 35%;
+  }
+}
+@media (max-width:600px){
+  .create__post_container{
+    padding: 0.5rem;
+    width: 98%;
+    margin: 1rem 0.3rem 6rem 0.3rem;
+    height: auto;
+  }
+  .skills_options{
+    width:100%
+  }
+  #skills{
+    flex: unset;
+    width:100%
+  }
+  .post__range{
+    width:100%;
+  }
+  .post__range .price{
+    width: 100%;
+  }
+}

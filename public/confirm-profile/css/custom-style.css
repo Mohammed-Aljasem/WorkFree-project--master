@@ -1,0 +1,126 @@
+.hide{
+    display: none;
+}
+.custom-file-input{
+
+    border-bottom: 1px solid #AAAAAA;
+}
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.custom-file-input::before {
+    content: "Upload Your image";
+    display: inline-block;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #AAAAAA;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+}
+
+
+.choices__input{
+    background:none;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+[type="date"] {
+    background: none;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+    /* display: none; */
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+    /* opacity: 0; */
+
+}
+
+/* custom styles */
+
+#dateofbirth {
+    border:none;
+    border-bottom: #aaa 1px solid;
+    outline: none;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 35px;
+    color: black;
+}
+
+
+#dateofbirth::-webkit-inner-spin-button { display: none; }
+#dateofbirth::-webkit-calendar-picker-indicator { color: orange  !important;}
+
+
+/* multi select custom style */
+
+.choices__item {
+    border-radius: 0.4rem !important;
+    border: black 1px solid !important;
+    /*background:none !important;*/
+    color: rgb(136, 136, 136) !important;
+    /*height: 40px !important;*/
+    /*padding: 0 !important;*/
+    /*padding-left: 0.5rem !important;*/
+}
+.choices__item--choice{
+    border: none !important;
+}
+.wizard-container{
+    padding: 0 !important;
+}
+.section{
+    padding: 0 !important;
+}
+.wizard-card{
+    border-radius: 1.5rem;
+    box-shadow:
+    2px 2px 30px  rgb(0, 0, 0,0.1)
+    !important;
+}
+div.choices__item {
+    background: none !important;
+    color: #b3b3b3 !important;
+    padding: 0.5rem 0.6rem;
+}
+#choices-multiple-remove-button{
+    background-color: #fff !important;
+}
+.main{
+    background: none;
+}
+.choices__button{
+    background-image: url('https://www.iconninja.com/files/621/152/910/essential-x-set-close-icon.svg') !important;
+    }
+
+.choices__inner{
+    background:none !important;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    }
+
+    .wizard-card .choice i{
+        line-height: 80px !important;
+    }
+.icon{
+        background-color: #f9f9f9 !important;
+    }
+.choice h6{
+        font-size: 1rem;
+    }
+
+

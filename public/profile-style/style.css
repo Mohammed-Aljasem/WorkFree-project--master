@@ -1,0 +1,127 @@
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.profile__container{
+  width: 85%;
+  min-height: 40vh;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.profile__section__one{
+  width: 48%; 
+  /* background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  min-height: 40vh; */
+}
+.profile__section__two{
+  width: 49%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  min-height: 24rem;
+  border-radius: 1rem;
+  padding: 1rem;
+
+}
+.profile__card{
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  height:8rem;
+  border-radius: 0.6rem;
+}
+
+.profile__about{
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  min-height:24rem;
+  margin-top: 1rem;
+  border-radius: 0.6rem;
+  
+}
+.profile__image{
+  width: 8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  height: 100%;
+  border-radius: 0.6rem ;
+  background-image: url('https://images.unsplash.com/photo-1480429370139-e0132c086e2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80');
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
+}
+.profile__card{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.profile__details{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.profile__details h3{
+  word-wrap: break-word;
+  max-height: 5rem;
+  overflow: hidden;
+}
+.profile__about{
+  padding: 1rem;
+}
+.about{
+  height: 59%;
+
+}
+.profile__about p{
+  text-align: justify;
+  padding-left: 0.7rem;
+  overflow: hidden;
+}
+
+.skills__profile{
+  margin-top: 1rem;
+  width: 100%;
+  height: 40%;
+  overflow: hidden;
+}
+.skills__profile span{
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  padding:0.3rem 0.5rem;
+  margin: 0.1rem;
+  border-radius: 0.3rem;
+}
+.profile__projects{
+  width: 95%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 5px 20px  rgba(0, 0, 0, 0.1);
+  margin: 0.5rem auto;
+  min-height: 8rem;
+  border-radius: 1rem;
+  padding: 1rem;
+
+}
+@media (max-width:600px) {
+  .profile__container{
+    flex-direction: column;
+    width: 97%;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+  }
+  .profile__section__two,.profile__section__one{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .profile__image{
+    width: 40%;
+  }
+}

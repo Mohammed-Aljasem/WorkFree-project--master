@@ -1,0 +1,144 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.pending__posts__container{
+  width: 90%;
+  border: 1px solid black;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.pending__post{
+  width: 100%;
+  height: 6rem;
+  border:black 1px solid;
+  border-radius:0.5rem;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.pending__post__image{
+  height: 100%;
+  width:  8rem;
+  border: 1px solid black;
+}
+.pending__post__image{
+  background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  width: 8rem;
+  border-radius: 0.5rem;
+}
+.pending__post__title{
+  border: 1px solid black;
+  width: 30%;
+  padding: 0.5rem;
+  height: 100%;
+  /* overflow: hidden; */
+   display: flex; 
+  flex-direction: column;
+
+  flex: 1;
+}
+.content__center{
+  height: 70%;
+  display: flex;
+  padding-top: 0.7rem;
+  justify-content: center;
+  align-content: stretch;
+  
+}
+.content__center h3{
+  word-wrap: break-word;
+  overflow: hidden;
+  
+}
+.pending__post__status{
+  border: 1px solid black;
+  width: 12%;
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+.pending__post__status span{
+  height: 2rem;;
+}
+.pending__post__submitted{
+  padding: 0.5rem;
+  text-align: center;
+  
+}
+.pending__post__created{
+  border: 1px solid black;
+  padding: 0.5rem;
+  /* width: 20%; */
+  text-align: center;
+}
+
+@media (max-width:600px) {
+  .pending__post{
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .pending__post__image{
+    height: 5rem;
+  }
+  .pending__post__title{
+   width: 100%;
+   flex: 4;
+   height: 5rem;
+   /* overflow: hidden; */
+  }
+  .content__center{
+    padding: 0.3rem 0;
+    overflow: hidden;
+  }
+  .pending__post__status{
+  width: 28%;
+  }
+  
+}
+
+@media (max-width:430px) {
+
+  .pending__post__image{
+    height: 5rem;
+  }
+  .pending__post__title{
+   width: 70%;
+   
+  }
+  .pending__post__title span{
+  }
+  .content__center h3 {
+    font-size: 1em;
+  }
+  .pending__post__status{
+    width: 34%;
+  }
+  .section__title{
+    font-size: 0.9em;
+
+  }
+  
+}
+@media (max-width:330px) {
+  .pending__post__title span{
+  }
+  .content__center h3 {
+    font-size: 0.8em;
+  }
+  .pending__post__status{
+    width: 34%;
+  }
+  .section__title{
+    font-size: 0.7em;
+
+  }
+  
+}

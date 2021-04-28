@@ -1,0 +1,184 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.pending__agreements__container{
+  width: 90%;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.agreement__progress{
+  height: 6px;
+  background-color: tomato;
+  width: 20%;
+  border-radius: 0 0 0.7rem 1rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.pending__agreements__subcont{
+  display: block;
+  border:black 1px solid;
+  height:4.48rem ;
+  border-radius:0.5rem;
+  color: black;
+  text-decoration: none;
+}
+.pending__agreement{
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+
+}
+ 
+.pending__agreement__title{
+
+  width: 30%;
+  padding: 0.3rem;
+  height: 100%;
+  /* overflow: hidden; */
+   display: flex; 
+  flex-direction: column;
+  flex: 4;
+}
+.content__center{
+  height: 70%;
+  display: flex;
+  padding-top: 0.2rem;
+  justify-content: center;
+  align-content: stretch;
+  
+}
+.section__title{
+  font-size: 0.8em;
+  text-align: center;
+}
+.content__center h3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  word-wrap: break-word;
+  overflow: hidden;
+  font-size: 0.8em;
+}
+.pending__agreement__freelancer{
+
+  width: 12%;
+  padding: 0.3rem;
+  text-align: center;
+  flex: 4;
+  height: 100%;
+  width: 100%;
+  
+}
+
+.freelancer__info{
+display: flex;
+flex-direction: row;
+/* padding-top: 0.2rem; */
+/* justify-content: center; */
+/* word-wrap: break-word; */
+overflow: hidden;
+height: 100%;
+
+}
+.freelancer__image{
+  background-image: url("https://images.unsplash.com/photo-1512850692650-c382e34f7fb2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=704&q=80");
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  /* justify-self:self-start ; */
+  margin-right: 0.5rem;
+
+}
+.freelancer__info h3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  font-size: 0.8em;
+  overflow: hidden;
+  width: 70%;
+}
+.pending__agreement__progress{
+  padding: 0.3rem;
+  text-align: center;
+  flex: 1;
+}
+.pending__agreement__time{
+
+  padding: 0.3rem;
+  /* width: 20%; */
+  text-align: center;
+  flex: 2;
+}
+
+@media (max-width:600px) {
+  .pending__agreements__subcont{
+
+    height: auto;
+  }
+  .pending__agreement{
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .pending__agreement__title{
+    width: 100%;
+    height: auto;
+    flex: unset;
+  }
+  .pending__agreement__freelancer{
+    width: 75%;
+    flex: unset;
+    text-align: left;
+  }
+  .freelancer__info{
+    font-size: 0.8em;
+  }
+  .pending__agreement__progress{
+    width: 25%;
+    flex: unset;
+  }
+  .pending__agreement__time{
+    height: auto;
+    width: 50%;
+    flex: unset;
+  }
+  .section__title{
+    font-size: 0.7em;
+  }
+  .content__center{
+    padding: 0.3rem 0;
+    overflow: hidden;
+  }
+  .content__center h3{
+    font-size: 0.8em;
+  }
+  
+  
+}
+
+
+
+@media (max-width:330px) {
+  .pending__agreement__title span{
+  }
+  .content__center h3 {
+    font-size: 0.8em;
+  }
+  .pending__agreement__freelancer{
+    width: 75%;
+  }
+  .section__title{
+    font-size: 0.7em;
+
+  }
+  
+}
