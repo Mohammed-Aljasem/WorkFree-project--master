@@ -52,9 +52,10 @@
 
                         <select name="from" id="skills">
                             <option selected disabled>Choose an option</option>
-                            <option value="1">Pure CSS</option>
-                            <option value="2">No JS</option>
-                            <option value="3">Nice!</option>
+                            @foreach ($skills as $skill)
+                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -71,6 +72,18 @@
                             <label for="To">To</label>
                             <input type="number" name="to">
                         </div>
+                    </div>
+                </div>
+                <div class="post__input__budget">
+                    <h3>Category post</h3>
+                    <div class="post__range flex_end">
+                        <select name="from" id="categories">
+                            <option selected disabled>Choose an option</option>
+                            @foreach ($skills as $skill)
+                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="post__input__btn"><Button type="submit">Post</Button></div>
@@ -108,7 +121,7 @@
 
         // functionality for dynamic skills
         let w = $("#skills").change(function() {
-            var val = $(this).children("option:selected").val();
+            var val = $(this).children("option:selected").text();
 
             $(document).ready(function() {
                 add(val);
@@ -155,11 +168,11 @@
 
                 let x = document.getElementById('append');
                 $('#skills_container').append(`<div class="skill"><span>${val}</span>
-          <!-- data -->
-                <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
-                    <!--  -->
-                <button type="button" class="delete-btn">X</button>
-                </div>`);
+                                      <!-- data -->
+                                            <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                                <!--  -->
+                                            <button type="button" class="delete-btn">X</button>
+                                            </div>`);
             }
         }
 

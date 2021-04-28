@@ -95,6 +95,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
     //where user is poster
     public function post()
     {

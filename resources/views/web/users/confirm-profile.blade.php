@@ -90,9 +90,11 @@
                                         <label class="control-label">Country</label>
                                         <select name="country_id" class="form-control">
                                             <option disabled="" selected=""></option>
-                                            <option value="1"> Afghanistan</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                            @endforeach
 
-                                            <option value="...">...</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -115,8 +117,12 @@
                                         <label class="control-label">Country</label>
                                         <select name="role_id" class="form-control">
                                             <option disabled="" selected=""></option>
-                                            <option value="3">freelance</option>
-                                            <option value="4">Hire a freelance</option>
+                                            @foreach ($roles as $role)
+                                                @if ($role->id > 2)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endif
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
@@ -189,19 +195,10 @@
                                         <div class="">
                                             <select id="choices-multiple-remove-button" name="skills[]"
                                                 placeholder="Select up to 10 tags" multiple>
-                                                <option value="1">HTML</option>
-                                                <option value="2">CSS</option>
-                                                <option value="3">Jquery</option>
-                                                <option value="4">Bootstrap 3</option>
-                                                <option value="5">Bootstrap 4</option>
-                                                <option value="6">Java</option>
-                                                <option value="7">Javascript</option>
-                                                <option value="8">Angular</option>
-                                                <option value="9">Python</option>
-                                                <option value="10">Hybris</option>
-                                                <option value="11">SQL</option>
-                                                <option value="12">NOSQL</option>
-                                                <option value="13">NodeJS</option>
+                                                @foreach ($skills as $skill)
+                                                    <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                     </div>

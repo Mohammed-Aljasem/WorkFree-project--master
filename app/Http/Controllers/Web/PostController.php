@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Country;
 use App\Models\Post;
 use App\Models\PostSkill;
@@ -19,6 +20,15 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+        $this->middleware('confirm-profile', ['except' => ['index']]);
+    }
+
+
+
     public function index()
     {
         $posts = Post::with('skills')->with('requests')->with('user')->get();
@@ -32,7 +42,8 @@ class PostController extends Controller
         //           };
         //       }
         //       exit;
-        return view('web.post.index', ['posts' => $posts]);
+        $categories = Category::all();
+        return view('web.post.index', ['posts' => $posts, 'categories' => $categories]);
     }
 
     /**
@@ -42,7 +53,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('web.post.create');
+        $skills = Skill::all();
+        return view('web.post.create', ['skills' => $skills]);
     }
 
     /**

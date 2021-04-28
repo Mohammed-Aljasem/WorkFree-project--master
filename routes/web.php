@@ -55,6 +55,8 @@ Route::group(['prefix' => '/'], function () {
 
 
     Route::get('/manage_posts',        [\App\Http\Controllers\Web\PostRequestController::class, 'index']);
+    Route::get('/category/{id}',        [\App\Http\Controllers\Web\CategoryFilterController::class, 'filter']);
+
     Route::get('/send_request/{id}',   [\App\Http\Controllers\Web\PostRequestController::class, 'sendRequest']);
     Route::get('/users_requests/{id}', [\App\Http\Controllers\Web\PostRequestController::class, 'sendRequest']);
     Route::get('/delete_request/{id}', [\App\Http\Controllers\Web\PostRequestController::class, 'deleteRequest']);
@@ -63,6 +65,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/agreement_request/{id}', [\App\Http\Controllers\Web\AgreementRequestController::class, 'create']);
     Route::get('/accept_agreement/{id}', [\App\Http\Controllers\Web\AgreementRequestController::class, 'accept']);
     Route::get('/reject_agreement/{id}', [\App\Http\Controllers\Web\AgreementRequestController::class, 'reject']);
+
+
     Route::get('/test', [\App\Http\Controllers\TestController::class, 'index']);
     // Route::Post('/test', [\App\Http\Controllers\TestController::class, 'store']);
 });
@@ -99,6 +103,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin']], function () {
 
     //manage countries in admin dashboard
     Route::resource('/countries', '\App\Http\Controllers\Admin\CountryController');
+
+    //manage categories in admin dashboard
+    Route::resource('/categories', '\App\Http\Controllers\Admin\CategoryController');
+
+
+    //manage posts in admin dashboard
+    Route::get('/posts', [\App\Http\Controllers\Admin\PostController::class, 'index']);
+    Route::post('/post_delete', [\App\Http\Controllers\Admin\PostController::class, 'delete']);
+    Route::get('/post_reject/{id}', [\App\Http\Controllers\Admin\PostController::class, 'reject']);
+    Route::get('/post_view/{id}', [\App\Http\Controllers\Admin\PostController::class, 'view']);
+    Route::get('/post_approve/{id}', [\App\Http\Controllers\Admin\PostController::class, 'approve']);
 });
 
 

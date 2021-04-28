@@ -10,6 +10,12 @@ use Auth;
 
 class PostRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+        $this->middleware('confirm-profile');
+    }
+
     public function index()
     {
         $posts =  Post::where('user_id', Auth::id())->with('users')->get();

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AgreementRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+        $this->middleware('confirm-profile');
+    }
+
     public function create($id)
     {
         return view('web.agreement.create', ['user_id' => $id]);

@@ -228,6 +228,9 @@ border-radius: 0.3rem;
 
 .post__input__budget{
   margin: 1rem;
+  display: flex;
+  flex-direction: column;
+
 }
 .post__input__budget h3{
   font-size: 1.5rem;
@@ -261,13 +264,37 @@ border-radius: 0.3rem;
 }
 .post__input__btn{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-end;
   padding: 1rem;
 }
+.post__footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#categories{
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #ffffff;
+  background: rgba(255, 255, 255, 0.3);
+  height: 2.5rem;
+  width: 100%;
+  text-align: center;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
+}
+.flex_end{
+  justify-self: end;
+  align-self: flex-end;
+  padding-top: 2.5rem;
+  
+}
 .post__input__btn button , .btn__apply{
   width:7rem;
-  height: 3rem;
+  height: 2.5rem;
   font-size: 1.5em;
   border-radius: 0.5rem;
   outline: none;
@@ -282,9 +309,24 @@ border-radius: 0.3rem;
 .post__input__btn button:hover, .btn__apply:hover{
   background-color: rgba(255, 255, 255, 0.3);
 }
-@media (max-width:1100px){}
-.create__post_container{
- height: auto;
+@media (max-width:1100px){
+  .create__post_container{
+   height: unset !important;
+  }
+  .post__input__budget{
+    width: 40%;
+  }
+  .post__range{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .post__range .price{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    width: 35%;
+  }
 }
 
 
@@ -324,7 +366,16 @@ border-radius: 0.3rem;
   .post__range{
     width:100%;
   }
+  .post__input__budget{
+    width: 100%;
+  }
   .post__range .price{
     width: 100%;
+  }
+  .post__footer{
+    flex-direction: column;
+  }
+  #categories{
+    width: 90%;
   }
 }

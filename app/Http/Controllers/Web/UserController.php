@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Post;
 use App\Models\ProjectFreelance;
+use App\Models\Role;
 use App\Models\Skill;
 use App\Models\User;
 use App\Models\UserSkill;
@@ -20,11 +21,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+        $this->middleware('confirm-profile', ['except' => ['update', 'create', 'show']]);
+    }
 
-    //     $this->middleware('admin', ['except' => ['update', 'create', 'show']]);
-    // }
     public function index()
     {
         $user = User::where('id', Auth::id())->with('skills')->with('projects')->with('country')->first();
@@ -38,7 +40,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('web.users.confirm-profile');
+        $roles = Role::all();
+        $skills = Skill::all();
+        $countries = Country::all();
+        return view('web.users.confirm-profile', ['roles' => $roles, 'skills' => $skills, 'countries' => $countries]);
     }
 
     /**
@@ -126,6 +131,7 @@ class UserController extends Controller
             $new['card_image'] = $image_name;
         }
 
+        //delete old data
         $scamProjects = ProjectFreelance::where('user_id', Auth::id())->get();
         foreach ($scamProjects as $project) {
             ProjectFreelance::destroy($project->id);
@@ -141,7 +147,11 @@ class UserController extends Controller
             foreach ($skills as $skill) {
                 $skillData['skill_id'] = $skill;
                 $skillData['user_id']  = Auth::id();
-                $skillDone = UserSkill::create($skillData);
+
+                $checkData = UserSkill::where('skill_id', $skill)->where('user_id', Auth::id())->first();
+                if (empty($checkData)) {
+                    $skillDone = UserSkill::create($skillData);
+                }
             }
         }
         //           //add projects for freelancer

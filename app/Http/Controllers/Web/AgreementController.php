@@ -13,9 +13,10 @@ class AgreementController extends Controller
 {
     public function __construct()
     {
-
         $this->middleware('auth_admin');
+        $this->middleware('confirm-profile');
     }
+
     /**
      * Display a listing of the resource.
      *

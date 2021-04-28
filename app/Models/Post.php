@@ -11,13 +11,13 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    protected $fillable = [ 'title','description','image','from','to','user_id','approved_post','blocked','status', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'description', 'image', 'from', 'to', 'user_id', 'approved_post', 'blocked', 'status', 'created_at', 'updated_at'];
 
-//=========================================
-//============ Realisations ===============
-//=========================================
+    //=========================================
+    //============ Realisations ===============
+    //=========================================
 
-//*******== Many to Many ==*************
+    //*******== Many to Many ==*************
 
     public function users()
     {
@@ -29,7 +29,7 @@ class Post extends Model
         return $this->belongsToMany(Skill::class, 'post_skills');
     }
 
-//>>>>>>>>>>>>> Many to one <<<<<<<<<<<<
+    //>>>>>>>>>>>>> Many to one <<<<<<<<<<<<
 
     public function user()
     {
@@ -38,11 +38,15 @@ class Post extends Model
 
     public function requests()
     {
-        return $this->hasMany(PostRequest::class );
+        return $this->hasMany(PostRequest::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-//=========================================
-//============ End Realisations ===========
-//=========================================
+    //=========================================
+    //============ End Realisations ===========
+    //=========================================
 
 }

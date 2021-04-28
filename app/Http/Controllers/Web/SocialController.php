@@ -15,13 +15,14 @@ class SocialController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    public function Callback($provider){
+    public function Callback($provider)
+    {
         $userSocial =   Socialite::driver($provider)->stateless()->user();
         $users       =   User::where(['email' => $userSocial->getEmail()])->first();
-        if($users){
+        if ($users) {
             Auth::login($users);
             return redirect('/test');
-        }else{
+        } else {
             $user = User::create([
                 'first_name'    => $userSocial->getName(),
                 'last_name'     => $userSocial->getName(),
@@ -37,10 +38,10 @@ class SocialController extends Controller
     {
         $twitterSocial =   Socialite::driver('twitter')->user();
         $users       =   User::where(['email' => $twitterSocial->getEmail()])->first();
-        if($users){
+        if ($users) {
             Auth::login($users);
             return redirect('/home');
-        }else{
+        } else {
             $user = User::firstOrCreate([
                 'name'          => $twitterSocial->getName(),
                 'email'         => $twitterSocial->getEmail(),
