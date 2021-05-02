@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->string('card_image')->nullable();
+            $table->date('age')->nullable();
             $table->string('description', 500)->nullable();
             $table->foreignId('role_id')->nullable()->constrained('roles');
             $table->foreignId('country_id')->nullable()->constrained('countries');

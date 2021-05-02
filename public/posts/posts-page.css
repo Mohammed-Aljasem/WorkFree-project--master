@@ -1,3 +1,5 @@
+@import url('../../public-style/main.css');
+
 *{
   padding: 0;
   margin: 0;
@@ -9,27 +11,83 @@
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  margin: 1rem auto;
+  margin: 0 auto;
   
 }
 .categories__aside{
   width: 30%;
   
 }
-
-.posts__section{
+.posts__container__main{
   width: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  position: relative;
+  
+}
+.posts_search{
+  width: 100%;
+  position: sticky;
+  top: 3%;
+}
+.search__input__field{
+height: 3rem;
+width: 90%;
+position: relative;
+margin: 0 auto;
+}
+.search__input__field input{
+height: 100%;
+width: 100%;
+background: none;
+outline: none;
+border: none;
+background-color: var( --font-background);
+box-shadow: 
+5px 5px 30px   var(--shadow-color),
+-5px -5px 30px   var(--shadow-color);
+padding-left: 3.3rem;
+border-radius: 0.5rem;
+font-size: 1.2em;
+z-index: 20;
+}
+.search__input__field button{
+  height: 2.8rem;
+  width: 2.8rem;
+  background: none;
+  outline: none;
+  border: none;
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
+  position: absolute;
+  top: 0.1rem;
+  left: 0.1rem;
+  border-radius: 0.3rem;
+  z-index: 11;
+}
+
+
+.posts__section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 .categories__section{
   position: sticky;
-  top: 4.5%;
+  top: 3%;
   width: 95%;
-  background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 4px 4px 15px rgba(100, 100, 100, 0.1);  margin: 0 auto;
+
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
+  margin: 0 auto;
   min-height: 12rem;
   padding: 0.5rem;
   border-radius: 0.3rem;
@@ -37,13 +95,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
+
 
 }
 .add__post,.section__cat{
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 4px 4px 15px rgba(100, 100, 100, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   height: 2.5rem;
   text-align: center;
   vertical-align: middle;
@@ -65,6 +125,12 @@ margin-bottom: 1rem;
   }
   .categories__aside{
     width: 100%;
+    
+  }
+  
+  .posts__container__main{
+    width: 100%;
+    margin-bottom: 6rem;
     
   }
   .posts__section{
@@ -100,5 +166,8 @@ margin-bottom: 1rem;
   .posts__container{
     margin: 0;
     width: 100%;
+  }
+  .section__cat{
+    width: 50%;
   }
 }

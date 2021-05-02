@@ -11,14 +11,14 @@ class Skill extends Model
 
     protected $table = 'skills';
 
-    protected $fillable = ['name','created_at','updated_at'];
+    protected $fillable = ['name', 'created_at', 'updated_at'];
 
-//=========================================
-//============ Realisations ===============
-//=========================================
+    //=========================================
+    //============ Realisations ===============
+    //=========================================
 
 
-//*******==Many to Many==*************
+    //*******==Many to Many==*************
 
     public function users()
     {
@@ -27,10 +27,10 @@ class Skill extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(User::class, 'post_skills');
+        return $this->belongsToMany(Post::class, 'post_skills', 'skill_id', 'post_id');
     }
 
-//=========================================
-//============ End Realisations ===========
-//=========================================
+    //=========================================
+    //============ End Realisations ===========
+    //=========================================
 }

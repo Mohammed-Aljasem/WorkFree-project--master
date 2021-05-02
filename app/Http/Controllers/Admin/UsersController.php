@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.manage_users.index',['users'=> $users]);
+        return view('admin.manage_users.index', ['users' => $users]);
     }
 
     /**
@@ -48,7 +48,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)->with('skills')->with('projects')->with('country')->first();
+        return view('admin.manage_users.profile', ['user' => $user]);
     }
 
     /**
@@ -60,7 +61,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return  view('admin.manage_admin.edit',['user'=>$user]);
+        return  view('admin.manage_admin.edit', ['user' => $user]);
     }
 
     /**
@@ -93,9 +94,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::destroy($id);
-        if($user){
+        if ($user) {
             return redirect()->route('users.index');
-        }else{
+        } else {
             return redirect()->back();
         }
     }

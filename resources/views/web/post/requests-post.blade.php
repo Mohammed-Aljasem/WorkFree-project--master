@@ -38,7 +38,7 @@
                     @endif
 
                     <div class="profile__image round"
-                        style="background-image: url('https://images.unsplash.com/photo-1586155638764-bf045442f5f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')">
+                        style="background-image: url('{{ url('/storage/uploades/imageProfile') }}/{{ $user->image }}')">
                     </div>
 
                     <h3>{{ $user->first_name }} {{ $user->last_name }}</h3>
@@ -69,9 +69,11 @@
                                             </button>
                                         </a>
                                     @elseif($request->accepted == 1)
-                                        <button class="primary">
-                                            Message
-                                        </button>
+                                        <a href="{{ url('chat/', $user->id) }}">
+                                            <button class="primary">
+                                                Message
+                                            </button>
+                                        </a>
                                         <a href="{{ url('delete_request/' . $request->id) }}">
                                             <button class="primary ghost">
                                                 Delete

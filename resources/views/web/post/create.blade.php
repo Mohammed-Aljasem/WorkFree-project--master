@@ -48,13 +48,13 @@
 
                     </div>
 
-                    <div class="skills_options">
 
-                        <select name="from" id="skills">
+                    <div class="skills_options">
+                        <label for="title">Select</label>
+                        <select id="skills">
                             <option selected disabled>Choose an option</option>
                             @foreach ($skills as $skill)
                                 <option value="{{ $skill->id }}">{{ $skill->name }}</option>
-
                             @endforeach
                         </select>
                     </div>
@@ -77,10 +77,10 @@
                 <div class="post__input__budget">
                     <h3>Category post</h3>
                     <div class="post__range flex_end">
-                        <select name="from" id="categories">
+                        <select name="category_id" id="categories">
                             <option selected disabled>Choose an option</option>
-                            @foreach ($skills as $skill)
-                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
 
                             @endforeach
                         </select>
@@ -121,10 +121,11 @@
 
         // functionality for dynamic skills
         let w = $("#skills").change(function() {
-            var val = $(this).children("option:selected").text();
+            var text = $(this).children("option:selected").text();
+            var val = $(this).children("option:selected").val();
 
             $(document).ready(function() {
-                add(val);
+                add(val, text);
             });
 
         });
@@ -161,18 +162,18 @@
 
 
 
-        function add(val) {
+        function add(val, text) {
 
             if (count < 10) {
 
 
                 let x = document.getElementById('append');
-                $('#skills_container').append(`<div class="skill"><span>${val}</span>
-                                      <!-- data -->
-                                            <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
-                                                <!--  -->
-                                            <button type="button" class="delete-btn">X</button>
-                                            </div>`);
+                $('#skills_container').append(`<div class="skill"><span>${text}</span>
+                                                                                      <!-- data -->
+                                                                                            <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                                                                                <!--  -->
+                                                                                            <button type="button" class="delete-btn">X</button>
+                                                                                            </div>`);
             }
         }
 

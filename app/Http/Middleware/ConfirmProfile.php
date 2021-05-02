@@ -20,6 +20,6 @@ class ConfirmProfile
         if (Auth::check() && Auth::user()->confirm_account == 1) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/active/account');
     }
 }

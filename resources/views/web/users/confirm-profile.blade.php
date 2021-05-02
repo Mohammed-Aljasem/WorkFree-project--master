@@ -2,298 +2,417 @@
 
 @section('links')
 
-    <link rel="stylesheet"
-        href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
-    <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0">
-    </script>
 
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('confirm-profile/img/apple-icon.png') }}" />
-    <link rel="icon" type="image/png" href="{{ asset('confirm-profile/img/favicon.png') }}" />
-
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-
-    <!-- CSS Files -->
-    <link href="{{ asset('confirm-profile/css/bootstrap.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('confirm-profile/css/material-bootstrap-wizard.css') }}" rel="stylesheet" />
-
-
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('confirm-profile/css/demo.css') }}" rel="stylesheet" />
-    <link href="{{ asset('confirm-profile/css/custom-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('confirm-profile/custom-style.css') }}" rel="stylesheet" />
 @endsection
 @section('title')
-    hello
+    Confirm Account
 @endsection
 @section('master')
+    <form action="{{ route('profile.update', Auth::id()) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        {{ method_field('PUT') }}
+        <div class="create__agreement__container   part-1">
+            <h1 for="">Confirm account</h1>
+            <div class="inputs__row">
 
-    <div class="col-sm-8 col-sm-offset-2">
-        <!--      Wizard container        -->
-        <div class="wizard-container">
-            <div class="card wizard-card" data-color="purple" id="wizard">
-                <form action="{{ route('profile.update', Auth::id()) }}" method="post" enctype="multipart/form-data">
-                    <!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
-                    @csrf
-                    {!! method_field('PUT') !!}
-                    <div class="wizard-header">
-                        <h3 class="wizard-title">
-                            Confirm profile
-                        </h3>
-                        <h5>Enter your real information</h5>
+                <div class="sections__title">
+                    <div class="agreement__inputs">
+                        <label for="title">First name</label>
+                        <input type="text" name="first_name">
                     </div>
-                    <div class="wizard-navigation">
-                        <ul>
-                            <li><a href="#location" data-toggle="tab">Basic information</a></li>
-                            <li><a href="#type" data-toggle="tab">Account Type</a></li>
-                            <li><a href="#facilities" data-toggle="tab">Facilities</a></li>
-                            <li><a href="#description" data-toggle="tab">Description</a></li>
-                        </ul>
+                </div>
+                <div class="sections__title">
+
+                    <div class="agreement__inputs">
+                        <label for="title">Last Name</label>
+                        <input type="text" name="last_name">
                     </div>
-
-                    <div class="tab-content">
-                        <div class="tab-pane" id="location">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4 class="info-text"> Let's start with the basic details</h4>
-                                </div>
-                                <div class="col-sm-5 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">First Name</label>
-                                        <input type="text" name="first_name" value="{{ Auth::user()->first_name }}"
-                                            class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 ">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Last name</label>
-                                        <input type="text" name="last_name" value="{{ Auth::user()->last_name }}"
-                                            class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Email</label>
-                                        <input type="email" name="email" class="form-control"
-                                            value="{{ Auth::user()->email }}" id="exampleInputEmail1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 ">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Mobile Number</label>
-                                        <input type="number" name="mobile" class="form-control" id="exampleInputEmail1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Country</label>
-                                        <select name="country_id" class="form-control">
-                                            <option disabled="" selected=""></option>
-                                            @foreach ($countries as $country)
-                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                            @endforeach
-
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-
-                                    <label class="control-label" style="visibility: hidden;">Your Image</label>
-
-                                    <input type="file" name="image" style="width: 100%" class="custom-file-input">
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="type">
-                            <h4 class="info-text">What type of account do you confirm ? </h4>
-                            <div class="row">
-
-                                <div class="col-sm-10 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Country</label>
-                                        <select name="role_id" class="form-control">
-                                            <option disabled="" selected=""></option>
-                                            @foreach ($roles as $role)
-                                                @if ($role->id > 2)
-                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                                @endif
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-5 col-sm-offset-1">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">project name</label>
-                                    <input type="text" name="project_name[]" class="form-control" id="exampleInputEmail1">
-                                </div>
-                            </div>
-                            <div class="col-sm-5 ">
-                                <div class="form-group label-floating">
-                                    <label for="dateofbirth" class="control-label" style="display: block;">Date of
-                                        project</label>
-                                    <input type="date" name="created_at[]" id="dateofbirth">
-                                </div>
-                            </div>
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">project description</label>
-                                    <textarea class="form-control" name="description_project[]" placeholder=""
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-5 col-sm-offset-1">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">project name</label>
-                                    <input type="text" name="project_name[]" class="form-control" id="exampleInputEmail1">
-                                </div>
-                            </div>
-                            <div class="col-sm-5 ">
-                                <div class="form-group label-floating">
-                                    <label for="dateofbirth" class="control-label" style="display: block;">Date of
-                                        project</label>
-                                    <input type="date" name="created_at[]" id="dateofbirth">
-                                </div>
-                            </div>
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">project </label>
-                                    <textarea class="form-control" name="description_project[]" placeholder=""
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="facilities">
-                            <h4 class="info-text">Tell us more about facilities. </h4>
-                            <div class="row">
-                                <div class="col-sm-5 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label for="dateofbirth" class="control-label" style="display: block;">Date Of
-                                            Birth</label>
-                                        <input type="date" name="age" id="dateofbirth">
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 ">
-
-                                    <label class="control-label" style="visibility: hidden;">Your Image</label>
-
-                                    <input type="file" name="card_image" style="width: 100%" class="custom-file-input">
-
-
-
-                                </div>
-                                <br>
-                                <div class="col-sm-10 col-sm-offset-1" id="skills">
-                                    <div class=" ">
-                                        <div class="">
-                                            <select id="choices-multiple-remove-button" name="skills[]"
-                                                placeholder="Select up to 10 tags" multiple>
-                                                @foreach ($skills as $skill)
-                                                    <option value="{{ $skill->id }}">{{ $skill->name }}</option>
-                                                @endforeach
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="description">
-                            <div class="row">
-                                <h4 class="info-text"> Drop us a small description. </h4>
-                                <div class="col-sm-6 col-sm-offset-1">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">About your self</label>
-                                        <textarea class="form-control" name="description" placeholder=""
-                                            rows="9"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Example</label>
-                                        <p class="description">"I am a full stack developer i work on web development and
-                                            mobile developer"</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wizard-footer">
-                        <div class="pull-right">
-                            <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next'
-                                value='Next' />
-                            <input type="submit" class='btn btn-finish btn-fill btn-primary btn-wd' value='Finish' />
-
-                        </div>
-                        <div class="pull-left">
-                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous'
-                                value='Previous' />
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div> <!-- wizard container -->
-    </div>
+            <div class="inputs__row">
+                <div class="width__75">
+                    <div class="agreement__inputs ">
+                        <label for="title">Email</label>
+                        <input type="text" name="email">
+                    </div>
+                </div>
+                <div class="width__33">
+                    <div class="agreement__inputs ">
+                        <label for="title">mobile</label>
+                        <input type="number" name="mobile">
+                    </div>
+                </div>
+            </div>
+            <div class="inputs__row">
+                <div class="width__75">
 
+                    <div class="agreement__inputs ">
+                        <label for="title">Select country</label>
+
+                        <select name="country_id" class="select__input">
+                            <option selected disabled>Choose a country</option>
+
+                            @if (!empty($countries))
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="Width__50">
+                    <div class="agreement__inputs ">
+                        <label for="title">Age</label>
+                        <input type="date" name="age">
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="inputs__row">
+                <div class="width__100">
+
+                    <div class="agreement__inputs ">
+                        <label for="title">Select account Type</label>
+                        <select name="role_id" id="career" class="select__input">
+                            <option selected disabled>Choose an option</option>
+                            <option value="3">Freelance</option>
+                            <option value="4">Client</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="width__50">
+                    <div class="agreement__inputs ">
+                        <label for="title">upload your image</label>
+                        <div class="upload-btn-wrapper">
+                            <button class="normal__btn" style="width: 90%;">Upload</button>
+                            <input type="file" name="image" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="sections__title  flex__end">
+                <button type="button" class="primary__btn" onclick="btn_one()">next</button>
+            </div>
+
+        </div>
+        <!--//////////////////////////////////////////////////////// -->
+
+        <div class="create__agreement__container   part-2" style="display: none;">
+            <div class="sections__title">
+                <h3 for="">advance information</h3>
+                <div class="inputs__row" id="category">
+                    <div class="width__100">
+                        <div class="agreement__inputs ">
+                            <label for="title">Select Your Failed</label>
+                            <select name="category_id" class="select__input">
+                                <option selected disabled>Choose an option</option>
+                                @if (!empty($categories))
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                @endif
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputs__row">
+                    <div class="width__33">
+                        <div class="agreement__inputs">
+                            <label for="title">upload card image</label>
+                            <div class="upload-btn-wrapper">
+                                <button class="normal__btn">Upload</button>
+                                <input type="file" name="card_image" onchange="readURL(this);" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Width__75">
+                        <div class="agreement__inputs">
+                            <label for="title">card image</label>
+                            <div class="image__position">
+                                <img id="blah"
+                                    src="https://juzx033mfjp334nrs2lynzsu-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/3.-Watermark-Image-Placeholders.png"
+                                    width="100%" height="100%" alt="your image" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="post__input__skill">
+                    <h3>Select skills</h3>
+                    <div class="post_skills">
+
+                        <div class="skills_container" id="skills_container">
+
+                        </div>
+
+                        <select class="select__input" id="skills">
+                            <option selected disabled>Choose an option</option>
+                            @if (!empty($skills))
+                                @foreach ($skills as $skill)
+                                    <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                                @endforeach
+                            @endif
+                            {{-- <option value="1">Pure CSS</option>
+                            <option value="2">No JS</option>
+                            <option value="3">Nice!</option> --}}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="sections__title">
+
+                    <div class="agreement__inputs">
+                        <label for="title">About</label>
+                        <textarea name="description" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="sections__title flex__between">
+                    <button type="button" class="normal__btn" onclick="back_one()">Back</button>
+                    <button type="button" class="primary__btn freelancer__btn" onclick="btn_two()">next</button>
+
+                    <button type="submit" style="display: none;" class="primary__btn client__btn">finish</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- /////////////////////////////////////////// -->
+
+
+        <div class="create__agreement__container  part-3" style="display: none;">
+            <h1 for="">Projects</h1>
+            <div class="agreement__inputs__group">
+                <div class="agreement__inputs__group2" style="">
+                    <div id="requirements">
+                        <div id="require" class="require">
+                            <span class="delete-btn btn__delete" style="float: right;">Delete</span>
+                            <div class="agreement__inputs">
+                                <label for="requirement">Project name</label>
+                                <input type="text" name="project_name[]">
+                            </div>
+                            <div class="Width__50">
+                                <div class="agreement__inputs ">
+                                    <label for="title">Date Project</label>
+                                    <input type="date" name="created_at[]">
+                                </div>
+                            </div>
+                            <div class="agreement__inputs">
+                                <label for="title">project description</label>
+                                <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <br>
+                            <hr>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="agreement__inputs__group2">
+                        <div class="agreement__inputs">
+                            <div class="flex__end">
+
+                                <button type="button" name="require__description" id="" class="normal__btn"
+                                    onclick="addRequirement()">Add more Project</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sections__title flex__between">
+                <button type="button" class="normal__btn" onclick="back_two()">Back</button>
+
+                <button type="submit" class="primary__btn">finish</button>
+            </div>
+
+
+        </div>
+
+    </form>
 @endsection
-
-
-
 @section('scripts')
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-
-    <script src="{{ asset('confirm-profile/js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('confirm-profile/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('confirm-profile/js/jquery.bootstrap.js') }}" type="text/javascript"></script>
-
-    <!--  Plugin for the Wizard -->
-    <script src="{{ asset('confirm-profile/js/material-bootstrap-wizard.js') }}"></script>
-
-    <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
-    <script src="{{ asset('confirm-profile/js/jquery.validate.min.js') }}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(".choices__input ").val("X");
-        $(document).ready(function() {
-            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-                removeItemButton: true,
-                maxItemCount: 10,
-                searchResultLimit: 10,
-                renderChoiceLimit: 10
-            });
+        // functionality for dynamic skills
 
+
+        function btn_one() {
+            $(".part-1").css("display", "none");
+            $(".part-2").css("display", "block");
+        }
+
+        function btn_two() {
+            $(".part-2").css("display", "none");
+            $(".part-3").css("display", "block");
+        }
+
+
+
+
+
+        function back_one() {
+            $(".part-1").css("display", "block");
+            $(".part-2").css("display", "none");
+        }
+
+        function back_two() {
+            $(".part-2").css("display", "block");
+            $(".part-3").css("display", "none");
+        }
+
+
+
+
+
+        $("#career").change(function() {
+            var text = $(this).children("option:selected").text();
+            var val = $(this).children("option:selected").val();
+
+
+            if (val == 4) {
+                $('#category').css("display", "none")
+                $('.post__input__skill').css("display", "none")
+                $(".part-3").css("display", "none");
+                $(".client__btn").css("display", "block");
+                $(".freelancer__btn").css("display", "none");
+            } else {
+                $(".client__btn").css("display", "none");
+                $('#category').css("display", "block")
+                $('.post__input__skill').css("display", "block")
+                $(".freelancer__btn").css("display", "block");
+
+            }
 
         });
 
 
-        $(document).ready(function() {
-            $(" .free").click(function() {
-                // $("#skills").prop("checked", true);
-                $("#skills").removeClass("hide");
 
+        let w = $("#skills").change(function() {
+            var val = $(this).children("option:selected").text();
 
-                $("#freelancer").prop("checked", true);
-
-
-
+            $(document).ready(function() {
+                add(val);
             });
-            $(" .client").click(function() {
-                $("#client").prop("checked", true);
-                $("#skills").addClass("hide");
-            });
+
         });
-        if ($('#client').is(':checked')) {
-            alert("it's checked");
+        // create new element and change style
+        let btnDel = document.getElementsByClassName('delete-btn');
+        //count number of skill added
+        var count = 0;
+        countRequire = 1;
+        $('#requirements').bind('DOMSubtreeModified', function() {
+            countRequire = $("#requirements").children().length;
+
+            for (i = 0; i < btnDel.length; i++) {
+                var button = btnDel[i];
+                button.addEventListener('click', function(event) {
+
+                    var buttonClicked = event.target;
+                    var parent = buttonClicked.parentElement;
+                    parent.remove();
+
+                })
+            }
+        });
+
+        if (countRequire == 1) {
+            $(".btn__delete").css("display", "none");
+
+        } else {
+            $(".btn__delete").css("display", "inline-block");
+
+        }
+
+        $('#skills_container').bind('DOMSubtreeModified', function() {
+            count = $("#skills_container").children().length;
+
+
+            for (i = 0; i < btnDel.length; i++) {
+                var button = btnDel[i];
+                button.addEventListener('click', function(event) {
+
+                    var buttonClicked = event.target;
+                    var parent = buttonClicked.parentElement;
+                    parent.remove();
+
+                })
+            }
+        });
+
+
+        function add(val) {
+
+            if (count < 10) {
+
+
+                let x = document.getElementById('append');
+                $('#skills_container').append(
+                    `<div class="skill"><span>${val}</span>
+                                                                                                                                                                  <!-- data -->
+                                                                                                                                                                  <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                                                                                                                                                  <!--  -->
+                                                                                                                                                                  <button type="button" class="delete-btn">X</button>
+                                                                                                                                                                  </div>`
+                );
+            }
+        }
+
+        function addRequirement() {
+
+            if (countRequire < 5) {
+
+
+                let x = document.getElementById('requirements');
+                $('#requirements').append(
+                    `
+                                    <div id="require" class="require">
+                                            <span class="delete-btn btn__delete" style="float: right;">Delete</span>
+                                            <div class="agreement__inputs">
+                                                <label for="requirement">Project name</label>
+                                                <input type="text" name="project_name[]">
+                                            </div>
+                                            <div class="Width__50">
+                                                <div class="agreement__inputs ">
+                                                    <label for="title">Date Project</label>
+                                                    <input type="date" name="created_at[]">
+                                                </div>
+                                            </div>
+                                            <div class="agreement__inputs">
+                                                <label for="title">project description</label>
+                                                <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
+                                            </div>
+                                            <br>
+                                            <hr>
+                                            <br>
+                                        </div>
+                                        `
+                );
+            }
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah')
+
+
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
     </script>
+
+
 @endsection

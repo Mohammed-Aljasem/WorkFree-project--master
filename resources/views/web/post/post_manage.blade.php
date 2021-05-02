@@ -33,7 +33,7 @@
                             <div class="content__center">
 
                                 <h3 style="color:
-                                        @if ($post->status == 0) orange
+                                            @if ($post->status == 0) orange
                                 @elseif($post->status == 1)
                                     green
                                 @elseif($post->status == 2)
@@ -69,7 +69,7 @@
                         <div class="pending__post__created">
                             <span class="section__title">Data posted</span>
                             <div class="content__center">
-                                <h3>{{ $post->created_at }}</h3>
+                                <h3>{{ \Carbon\Carbon::parse($post->created_at)->format('d-m-Y') }}</h3>
                             </div>
                         </div>
                     </div>

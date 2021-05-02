@@ -53,8 +53,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         $skills = Skill::all();
-        return view('web.post.create', ['skills' => $skills]);
+        return view('web.post.create', ['skills' => $skills, 'categories' => $categories]);
     }
 
     /**
@@ -65,9 +66,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->all();
         $validated = $request->validate([
             'title' => 'required',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'image' => 'required',
             'skills' => 'required',
             'from' => 'required',
@@ -77,6 +79,7 @@ class PostController extends Controller
 
         $postDetail = $request->all();
         $postDetail['user_id'] = $user_id;
+        $postDetail['approved_post'] = 0;
         if ($request->file('image')) {
             $image = $request->file('image');
             $image_name = time() . '.' . $image->getClientOriginalExtension();
@@ -99,7 +102,7 @@ class PostController extends Controller
                 $skillDone = PostSkill::create($skillData);
             }
         }
-        return "ok";
+        return redirect('post');
     }
 
     /**
@@ -125,8 +128,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
         $post = Post::where('id', $id)->with('skills')->first();
-        return view("web.post.edit", ['post' => $post]);
+        return view("web.post.edit", ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -191,6 +195,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::destroy($id);
-        return "ok";
+        return redirect('post');
     }
 }

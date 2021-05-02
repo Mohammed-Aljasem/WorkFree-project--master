@@ -3,13 +3,13 @@
     {{-- table for freelancers requests --}}
     <div class="col-md-12">
         <div class="card">
-
+            <h3 style="margin: 0.5rem 0 0 0.5rem">Freelancers table</h3>
             <table class="table">
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>Category</th>
                         <th>Email</th>
                         {{-- <th class="text-right">Salary</th> --}}
                         <th class="text-right">Actions</th>
@@ -24,7 +24,13 @@
                                 <tr>
                                     <td class="text-center">{{ $user->id }}</td>
                                     <td>{{ $user->first_name }}-{{ $user->last_name }}</td>
-                                    <td>{{ $users[$key]->category->name }}</td>
+                                    @if (!empty($users[$key]->category->name))
+
+                                        <td>{{ $users[$key]->category->name }}</td>
+                                    @else
+                                        <td>Null</td>
+
+                                    @endif
                                     <td>{{ $user->email }}</td>
 
                                     <td class="td-actions text-right">
@@ -34,7 +40,7 @@
 
                                             <button type="button" rel="tooltip"
                                                 class="btn btn-info btn-sm btn-round btn-icon">
-                                                <a style="color: white" href="">
+                                                <a style="color: white" href="{{ route('users.show', $user->id) }}">
                                                     <i class="tim-icons icon-single-02"></i>
                                                 </a>
                                             </button>
@@ -65,13 +71,13 @@
     {{-- table for clients accept requsts --}}
     <div class="col-md-12">
         <div class="card">
-
+            <h3 style="margin: 0.5rem 0 0 0.5rem">Customers table</h3>
             <table class="table">
                 <thead>
                     <tr>
                         <th class="text-center">#</th>
                         <th>Name</th>
-                        <th>Position</th>
+
                         <th>Email</th>
 
                         <th class="text-right">Actions</th>
@@ -84,7 +90,7 @@
                                 <tr>
                                     <td class="text-center">{{ $user->id }}</td>
                                     <td>{{ $user->first_name }}-{{ $user->last_name }}</td>
-                                    <td>{{ $users[$key]->category->name }}</td>
+
                                     <td>{{ $user->email }}</td>
                                     <td class="td-actions text-right">
                                         <form method="post" action="{{ route('users.destroy', $user->id) }}">
@@ -93,7 +99,7 @@
 
                                             <button type="button" rel="tooltip"
                                                 class="btn btn-info btn-sm btn-round btn-icon">
-                                                <a style="color: white" href="">
+                                                <a style="color: white" href="{{ route('users.show', $user->id) }}">
                                                     <i class="tim-icons icon-single-02"></i>
                                                 </a>
                                             </button>

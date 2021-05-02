@@ -17,11 +17,9 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id == 4) {
+        if (Auth::check() && Auth::user()->role_id == 1) {
             return $next($request);
         }
         abort(403);
-
-
     }
 }

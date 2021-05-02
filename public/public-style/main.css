@@ -1,0 +1,64 @@
+/* :root{
+  --font-roboto: "Roboto", Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --athens-gray: #e9e8ec;
+  --dune: #242221;
+  --dune-rgba-2: rgba(36, 34, 33, 0.2);
+  --dune-rgba-5: rgba(36, 34, 33, 0.5);
+  --alabaster: #f8f8f8;
+  --true-v: #9174d8;
+  --color-main: rgba(47, 25, 103, 1);
+  --silver: #471f1f;
+  --blue-violet: #7a61b7;
+  --viking: #aae5e5;
+  --geraldine: #f98f8e;
+  --cornflower-blue: #727ef7;
+  --rajah: #fdd3d6;
+} */
+
+
+:root{
+  --font-color-titles:  #35304e;
+  --font-color-spans:  #443e60;
+  --font-background:  rgba(255, 255, 255, 0.9);
+  --font-color-paragraph: rgb(99, 75, 159);;
+  --font-color-border: rgb(166, 74, 251);;
+  --shadow-color: rgba(158, 131, 226, 0.1);
+}
+
+h6,
+h5,
+h4,
+h3,
+h2,
+h1{
+  color: var(--font-color-titles);
+  margin-bottom: 0.3rem;
+}
+a{
+  color: var(--font-color-titles);
+  text-decoration: none;
+}
+label{
+  color: var(--font-color-titles);
+  text-decoration: none;
+}
+button{
+  color: var(--font-color-titles);
+  text-decoration: none;
+}
+span{
+  color: var(--font-color-spans);
+}
+p{
+  color: var(--font-color-paragraph);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
+}

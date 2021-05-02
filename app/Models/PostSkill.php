@@ -11,5 +11,14 @@ class PostSkill extends Model
 
     protected $table = 'post_skills';
 
-    protected $fillable = [ 'skill_id','post_id', 'created_at', 'updated_at'];
+    protected $fillable = ['skill_id', 'post_id', 'created_at', 'updated_at'];
+
+    // public function users()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+    // public function posts()
+    // {
+    //     return $this->belongsTo(Post::class, 'post_id');
+    // }
 }

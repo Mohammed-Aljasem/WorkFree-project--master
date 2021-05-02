@@ -15,13 +15,16 @@
     <div class="big__container">
         <nav class="nav__bar">
             <div class="nav__links">
-                <a href="{{ url('/') }}" class="social__icons "><i class="fas fa-home"></i></a>
+                <a href="{{ url('/') }}" class="social__icons"><i class="fas fa-home"></i></a>
                 <a href="{{ url('/agreements') }}" class="social__icons"><i class="fas fa-chart-line"></i></a>
-                <a href="{{ url('/agreements') }}" class="social__icons"><i class="fas fa-chart-line"></i></a>
-                <a href="{{ url('/manage_posts') }}" class="social__icons active_link"><i
-                        class="far fa-comment-alt"></i></a>
+                <a href="{{ url('/manage_posts') }}" class="social__icons "><i class="fas fa-chart-line"></i> </a>
+                <a href="{{ url('/chat') }}" class="social__icons messages-icon active_link"><i
+                        class="far fa-comment-alt"></i> </a>
                 <a href="{{ url('/post') }}" class="social__icons"><i class="far fa-compass"></i></a>
                 <a href="{{ url('/profile') }}" class="social__icons"><i class="fas fa-user"></i></a>
+                @if (!empty(Auth::id()))
+                    <a href="{{ url('/logout') }}" class="social__icons"><i class="fas fa-sign-out-alt"></i></a>
+                @endif
             </div>
         </nav>
         <div class="sub__container">
@@ -48,12 +51,12 @@
                     <h3>Support</h3>
                     <form class="support__message" action="" method="POST">
                         <div class="support__email">
-                            <label for="email_user">Email</label>
-                            <input name="email_user" type="text" placeholder="Example@exm.com">
+
+                            <input name="email_user" type="text" placeholder="Email">
                         </div>
                         <div class="support__message">
-                            <label for="user_message">Message</label>
-                            <textarea name="message_user" id="" cols="30" rows="10" placeholder="Hello"
+
+                            <textarea name="message_user" id="" cols="30" rows="10" placeholder="Your message"
                                 maxlength="100"></textarea>
                         </div>
                     </form>
@@ -64,11 +67,11 @@
                     <P>Copyrights © WorkFree</P>
                 </div>
                 <div class="footer__social">
-                    <a href="#" class="scoial__icons"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="scoial__icons"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#" class="scoial__icons"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="scoial__icons"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="scoial__icons"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social__icons"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social__icons"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" class="social__icons"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social__icons"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social__icons"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </footer>
@@ -77,7 +80,7 @@
     @yield('scripts')
     <script>
         var header = document.getElementById("nav__links");
-        var btns = header.getElementsByClassName("social__icons");
+        var btns = header.getElementsByClassName(".social__icons");
         for (var i = 0; i < btns.length; i++) {
 
             btns[i].addEventListener("click", function() {
@@ -88,7 +91,17 @@
             });
         }
 
+
+
+        // $(".social__icons").click(function() {
+        //     $(".social__icons").removeClass("active_link");
+        //     $(this).addClass("active_link");
+
+        // });
+
     </script>
+
+
 </body>
 
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Country;
 use App\Models\Post;
 use App\Models\ProjectFreelance;
@@ -29,7 +30,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::where('id', Auth::id())->with('skills')->with('projects')->with('country')->first();
+        $user = User::where('id', Auth::id())->with('skills')->with('projects')->with('country')->with('category')->first();
         return view('web.users.profile', ['user' => $user]);
     }
 
@@ -43,7 +44,9 @@ class UserController extends Controller
         $roles = Role::all();
         $skills = Skill::all();
         $countries = Country::all();
-        return view('web.users.confirm-profile', ['roles' => $roles, 'skills' => $skills, 'countries' => $countries]);
+        $categories = Category::all();
+
+        return view('web.users.confirm-profile', ['roles' => $roles, 'skills' => $skills, 'countries' => $countries, 'categories' =>  $categories]);
     }
 
     /**
@@ -54,6 +57,72 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'first_name'  => 'required',
+            'last_name'   => 'required',
+            'email'       => 'required',
+            'mobile'      => 'required',
+            'country_id'  => 'required',
+            'description' => 'required',
+
+        ]);
+        $userData = $request->all();
+        $new['first_name']   = $userData['first_name'];
+        $new['last_name']    = $userData['last_name'];
+        $new['email']        = $userData['email'];
+        $new['mobile']       = $userData['mobile'];
+        $new['country_id']   = $userData['country_id'];
+        $new['description']  = $userData['description'];
+
+
+        //        $userData['confirm_account'] =1;
+        //add images (image user and image card)
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = $image->storeAs('public/uploades/imageProfile', $image_name);
+            $new['image'] = $image_name;
+        }
+
+
+
+
+        if (Auth::user()->role_id == 3) {
+
+            $new['category_id']  = $userData['category_id'];
+            //delete old data
+
+
+            $scamSkills = UserSkill::where('user_id', Auth::id())->get();
+            foreach ($scamSkills as $skill) {
+                UserSkill::destroy($skill->id);
+            }
+            //add skills for freelancer
+
+            if (!empty($userData['skills'])) {
+
+                $skills = $userData['skills'];
+                foreach ($skills as $skill) {
+                    $skillData['skill_id'] = $skill;
+                    $skillData['user_id']  = Auth::id();
+
+                    $checkData = UserSkill::where('skill_id', $skill)->where('user_id', Auth::id())->first();
+                    if (empty($checkData)) {
+                        $skillDone = UserSkill::create($skillData);
+                    }
+                }
+            }
+        }
+
+
+
+        // add save user data for confirm account
+        $user = User::find(Auth::id());
+
+        $user->fill($new)->save();
+
+
+        return redirect('profile');
     }
 
     /**
@@ -76,7 +145,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+
+        $skills = Skill::all();
+        $countries = Country::all();
+        $user = User::where('id', $id)->with('skills')->with('country')->first();
+        return view('web.users.edit_profile', ['user' => $user, 'countries' => $countries, 'skills' => $skills, 'categories' =>  $categories]);
     }
 
     /**
@@ -89,6 +163,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
 
+        // return $request->all();
         //        validation data user
         $validated = $request->validate([
             'first_name'  => 'required',
@@ -103,20 +178,17 @@ class UserController extends Controller
 
         ]);
         $userData = $request->all();
-        $new['first_name']  = $userData['first_name'];
-        $new['last_name']   = $userData['last_name'];
-        $new['email']       = $userData['email'];
-        $new['mobile']      = $userData['mobile'];
-        $new['role_id']     = $userData['role_id'];
-        $new['country_id']  = $userData['country_id'];
-        $new['description'] = $userData['description'];
-        $new['card_image']  = $userData['card_image'];
-        $new['image']       = $userData['image'];
+        $new['first_name']   = $userData['first_name'];
+        $new['last_name']    = $userData['last_name'];
+        $new['email']        = $userData['email'];
+        $new['mobile']       = $userData['mobile'];
+        $new['role_id']      = $userData['role_id'];
+        $new['country_id']   = $userData['country_id'];
+        $new['description']  = $userData['description'];
+        $new['card_image']   = $userData['card_image'];
+        $new['image']        = $userData['image'];
 
         //        $userData['confirm_account'] =1;
-
-
-
         //add images (image user and image card)
         if ($request->file('image')) {
             $image = $request->file('image');
@@ -131,40 +203,46 @@ class UserController extends Controller
             $new['card_image'] = $image_name;
         }
 
-        //delete old data
-        $scamProjects = ProjectFreelance::where('user_id', Auth::id())->get();
-        foreach ($scamProjects as $project) {
-            ProjectFreelance::destroy($project->id);
-        }
 
-        $scamSkills = UserSkill::where('user_id', Auth::id())->get();
-        foreach ($scamSkills as $skill) {
-            UserSkill::destroy($skill->id);
-        }
-        //add skills for freelancer
-        if (!empty($userData['skills'])) {
-            $skills = $userData['skills'];
-            foreach ($skills as $skill) {
-                $skillData['skill_id'] = $skill;
-                $skillData['user_id']  = Auth::id();
 
-                $checkData = UserSkill::where('skill_id', $skill)->where('user_id', Auth::id())->first();
-                if (empty($checkData)) {
-                    $skillDone = UserSkill::create($skillData);
+        if ($userData['role_id'] == 3) {
+
+            $new['category_id']  = $userData['category_id'];
+            //delete old data
+            $scamProjects = ProjectFreelance::where('user_id', Auth::id())->get();
+            foreach ($scamProjects as $project) {
+                ProjectFreelance::destroy($project->id);
+            }
+
+            $scamSkills = UserSkill::where('user_id', Auth::id())->get();
+            foreach ($scamSkills as $skill) {
+                UserSkill::destroy($skill->id);
+            }
+            //add skills for freelancer
+            if (!empty($userData['skills'])) {
+                $skills = $userData['skills'];
+                foreach ($skills as $skill) {
+                    $skillData['skill_id'] = $skill;
+                    $skillData['user_id']  = Auth::id();
+
+                    $checkData = UserSkill::where('skill_id', $skill)->where('user_id', Auth::id())->first();
+                    if (empty($checkData)) {
+                        $skillDone = UserSkill::create($skillData);
+                    }
                 }
             }
-        }
-        //           //add projects for freelancer
-        if (!empty($userData['project_name'])) {
-            $projectName =  $userData['project_name'];
-            $projectDesc =  $userData['description_project'];
-            $projectCreate =  $userData['created_at'];
-            for ($i = 0; $i < count($projectName); $i++) {
-                $project['user_id'] = Auth::id();
-                $project['project_name'] = $projectName[$i];
-                $project['description']  = $projectDesc[$i];
-                $project['created_at']   = $projectCreate[$i];
-                ProjectFreelance::create($project);
+            //           //add projects for freelancer
+            if (!empty($userData['project_name'])) {
+                $projectName =  $userData['project_name'];
+                $projectDesc =  $userData['description_project'];
+                $projectCreate =  $userData['created_at'];
+                for ($i = 0; $i < count($projectName); $i++) {
+                    $project['user_id'] = Auth::id();
+                    $project['project_name'] = $projectName[$i];
+                    $project['description']  = $projectDesc[$i];
+                    $project['created_at']   = $projectCreate[$i];
+                    ProjectFreelance::create($project);
+                }
             }
         }
 
@@ -187,6 +265,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $projects = ProjectFreelance::where('user_id', $id)->get();
+        return view('web.users.edit_projects', ['projects' => $projects]);
     }
 }

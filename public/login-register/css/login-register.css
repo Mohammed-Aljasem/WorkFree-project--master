@@ -1,6 +1,6 @@
-body {
-	margin:  0;
-}
+@import url('../../public-style/main.css');
+
+
 .page-content {
 	width: 100%;
 	height: 100vh;
@@ -20,21 +20,27 @@ body {
 	-webkit-align-items: center;
 }
 .form-v4-content  {
-	background: #fff;
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
 	width: 1150px;
 	height: 600px;
 	border-radius: 30px;
 
-	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-o-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-ms-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-	-webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+
 	margin: 175px 0;
 	position: relative;
 	display: flex;
 	display: -webkit-flex;
 	font-family: 'Open Sans', sans-serif;
+}
+.form-detail{
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
+	border-radius:1rem ;
 }
 .form-v4-content h2 {
 	font-weight: 700;
@@ -46,11 +52,13 @@ body {
 	background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
 	background-position: center;
 	background-size: cover;
-	border-radius: 30px 0 0 30px;
+	border-radius: 1rem 0 0 1rem;
 	padding: 80px 90px 0px 40px ;
 	position: relative;
 	width: 100%;
-	color: #fff;
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
 
 }
 .form-v4-content .form-left p {
@@ -65,14 +73,17 @@ body {
 	margin: 20px 0 25px;
 }
 .form-v4-content .form-left .account {
-	background: #fff;
+	background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	width: 180px;
 	border: none;
 	margin: 15px 0 50px 0px;
 	cursor: pointer;
-	color: #333;
+
 	font-weight: 700;
 	font-size: 15px;
 	font-family: 'Open Sans', sans-serif;

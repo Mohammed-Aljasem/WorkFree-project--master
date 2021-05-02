@@ -1,21 +1,15 @@
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-body{
-
-
-}
+@import url('../../public-style/main.css');
 
 .create__post_container{
-  width: 90%;
+  width: 85%;
   margin:0 auto;
-  border:1px solid black;
-  height: 100vh;
+  min-height: 100vh;
   border-radius:1rem;
   padding:1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
 }
 .post__input__title{
   display: flex;
@@ -32,10 +26,10 @@ body{
   padding-left: 0.5rem ;
   border: none;
   background: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow:
-  2px 2px 25px rgba(199, 199, 199, 0.1),
-  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   border-radius: 0.8rem;
   outline: none;
 }
@@ -55,10 +49,10 @@ body{
   padding:0.6rem 0.5rem ;
   border: none;
   background: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow:
-  2px 2px 25px rgba(199, 199, 199, 0.1),
-  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   border-radius: 0.8rem;
   resize: none;
   outline: none;
@@ -84,10 +78,10 @@ body{
   padding-left: 0.5rem ;
   border: none;
   background: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow:
-  2px 2px 25px rgba(199, 199, 199, 0.1),
-  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   border-radius: 0.8rem;
   outline: none;
 }
@@ -97,7 +91,10 @@ body{
   font-size: 1.3em;
   margin-left: 2%;
   padding: 0.8rem 1rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   border-radius: 0.8rem;
   cursor: pointer;
 }
@@ -144,11 +141,11 @@ body{
   flex-wrap: wrap;
 }
 .skill{
-  width: auto;
+ width: auto;
 padding: 0.1rem 0.4rem;
 margin: 0.3rem 0.3rem;
 padding-right: 0.1rem;
-border: 1px solid black;
+border: 1px solid var(--font-color-border);
 display: flex;
 flex-direction: row;
 justify-content: space-between;
@@ -168,58 +165,29 @@ border-radius: 0.3rem;
   font-size: 1.1em;
 }
 /* ===========Drop Select style================ */
+.skills_options{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
 #skills {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
   appearance: none;
   outline: 0;
   box-shadow: none;
   border: 0 !important;
-  background: #ffffff;
-  background-image: none;
-
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
+  height: 2.5rem;
+  width: 100%;
+  text-align: center;
+  padding-left: 1rem;
+  border-radius: 0.5rem;
 }
 /* Remove IE arrow */
-#skills::-ms-expand {
-  display: none;
-}
-/* Custom Select */
-.skills_options {
-  position: relative;
-  display: flex;
-  width: 40%;
-  height: 3em;
-  line-height: 3;
-  background: #2c3e50;
-  overflow: hidden;
-  border-radius: .25em;
-}
-#skills {
-  flex: 1;
-  padding: 0 .5em;
-  color: #2c3e50;
-  cursor: pointer;
-}
-/* Arrow */
-.skills_options::after {
-  content: '\25BC';
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 1em;
-  background: #e6e6e6;
-  cursor: pointer;
-  border-radius: 0.24rem;
-  pointer-events: none;
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
-}
-/* Transition */
-.skills_options:hover::after {
-  color: #5c5c5c;
-}
+
 
 
 
@@ -230,7 +198,7 @@ border-radius: 0.3rem;
   margin: 1rem;
   display: flex;
   flex-direction: column;
-
+  width: 30%;
 }
 .post__input__budget h3{
   font-size: 1.5rem;
@@ -244,7 +212,7 @@ border-radius: 0.3rem;
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  width: 15%;
+  width: 35%;
 }
 .price input{
   margin-top: 0.5rem;
@@ -254,10 +222,10 @@ border-radius: 0.3rem;
   border: none;
   background: none;
   width: 80%;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow:
-  2px 2px 25px rgba(199, 199, 199, 0.1),
-  -8px -2px 25px rgba(199, 199, 199, 0.1);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   border-radius: 0.8rem;
   resize: none;
   outline: none;
@@ -278,17 +246,20 @@ border-radius: 0.3rem;
   outline: 0;
   box-shadow: none;
   border: 0 !important;
-  background: #ffffff;
-  background: rgba(255, 255, 255, 0.3);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   height: 2.5rem;
   width: 100%;
   text-align: center;
   padding-left: 1rem;
   border-radius: 0.5rem;
+
 }
 .flex_end{
   justify-self: end;
-  align-self: flex-end;
+
   padding-top: 2.5rem;
   
 }
@@ -300,7 +271,10 @@ border-radius: 0.3rem;
   outline: none;
   border: none;
   background: none;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
   cursor: pointer;
 }
 .post__input__btn a{

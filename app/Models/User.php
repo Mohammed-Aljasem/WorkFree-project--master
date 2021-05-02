@@ -29,9 +29,11 @@ class User extends Authenticatable
         'password',
         'image',
         'card_image',
+        'age',
         'description',
         'role_id',
         'country_id',
+        'category_id',
         'provider',
         'provider_id',
         'blocked',
@@ -79,11 +81,11 @@ class User extends Authenticatable
     //technologies for user
     public function skills()
     {
-        return $this->belongsToMany(Skill::class, 'user_skills');
+        return $this->belongsToMany(Skill::class, 'user_skills', 'user_id', 'skill_id');
     }
 
 
-    //>>>>>>>>>>>>>>> One to many <<<<<<<<<<<<<<<<<<<
+    //>>>>>>>>>>>>>>> many to one  <<<<<<<<<<<<<<<<<<<
 
     public function userRole()
     {
@@ -116,12 +118,21 @@ class User extends Authenticatable
         return $this->hasMany(ProjectFreelance::class, 'user_id');
     }
 
-    //>>>>>>>>>>>>>> Many to one <<<<<<<<<<<<<<<<<
+    //>>>>>>>>>>>>>> one to many <<<<<<<<<<<<<<<<<
 
     //where user is he send post
     public function postRequest()
     {
         return $this->hasMany(PostRequest::class);
+    }
+    //where user is he send post
+    public function messageFrom()
+    {
+        return $this->hasMany(Message::class, 'from');
+    }
+    public function messageTo()
+    {
+        return $this->hasMany(Message::class, 'to');
     }
 
 
