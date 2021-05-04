@@ -17,19 +17,19 @@ class SearchController extends Controller
         // return   Skill::where('id', 2)->with('posts')->get();
         // Search in the title and body columns from the posts table
         $skills = Skill::query()
-            ->where('name', 'LIKE', "%{$search}%")
+            ->where('name', 'LIKE', "%{$search}%")->with('posts')
             // ->orWhere('description', 'LIKE', "%{$search}%")
             ->get();
 
-        // if (!empty($skills[0])) {
-        //     return $skills;
-        // } else {
-        $posts = Post::query()
-            ->where('title', 'LIKE', "%{$search}%")
-            ->orWhere('description', 'LIKE', "%{$search}%")->with('skills')->with('user')
-            ->get();
+        if (!empty($skills[0])) {
+            return view('web.post.posts_search', ['skills' => $skills]);
+        } else {
+            $posts = Post::query()
+                ->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%")->with('skills')->with('user')
+                ->get();
 
-        return view('web.post.posts_search', ['posts' => $posts]);
-        // }
+            return view('web.post.posts_search', ['posts' => $posts]);
+        }
     }
 }

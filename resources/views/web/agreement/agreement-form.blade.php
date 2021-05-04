@@ -24,9 +24,9 @@
             </div>
             <div class="header__users">
                 <div class="header_user">
-                    <div class="header__user__image">
-                        <img
-                            src="https://images.unsplash.com/photo-1595273185163-347066c49ad3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+                    <div class="header__user__image"
+                        style="background-image: url('{{ url('/storage/uploades/imageProfile') }}/{{ $agreement->userClient->image }}')">
+                        {{-- <img src="{{ url('/storage/uploades/imageProfile') }}/{{ $agreement->userClient->image }}"> --}}
                     </div>
                     <div class="header__user__info">
                         <h2>{{ $agreement->userClient->first_name }}
@@ -36,9 +36,9 @@
                     </div>
                 </div>
                 <div class="header_user">
-                    <div class="header__user__image">
-                        <img src="https://images.unsplash.com/photo-1595273185163-347066c49ad3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="">
+                    <div class="header__user__image"
+                        style="background-image: url('{{ url('/storage/uploades/imageProfile') }}/{{ $agreement->userFreelance->image }}')"
+                        {{-- <img src="{{ url('/storage/uploades/imageProfile') }}/{{ $agreement->userFreelance->image }}" --}} alt="">
                     </div>
                     <div class="header__user__info">
                         <h2>{{ $agreement->userFreelance->first_name }}

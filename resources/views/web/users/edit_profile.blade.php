@@ -14,6 +14,15 @@
         {{-- {{ method_field('PUT') }} --}}
         <div class="create__agreement__container   part-1">
             <h1 for="">Project name</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+
+                    @foreach ($errors->all() as $error)
+                        <span>- {{ $error }}</span>
+                    @endforeach
+
+                </div>
+            @endif
             <div class="inputs__row">
 
                 <div class="sections__title">
@@ -265,11 +274,11 @@
 
                 let x = document.getElementById('append');
                 $('#skills_container').append(`<div class="skill"><span>${text}</span>
-                                                                              <!-- data -->
-                                                                                    <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
-                                                                                        <!--  -->
-                                                                                    <button type="button" class="delete-btn">X</button>
-                                                                                    </div>`);
+                                                                                  <!-- data -->
+                                                                                        <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                                                                            <!--  -->
+                                                                                        <button type="button" class="delete-btn">X</button>
+                                                                                        </div>`);
             }
         }
 
@@ -281,27 +290,27 @@
                 let x = document.getElementById('requirements');
                 $('#requirements').append(
                     `
-                                                                                                                                                                                                                        <div id="require" class="require">
-                                                                                                                                                                                                                                <span class="delete-btn btn__delete" style="float: right;">Delete</span>
-                                                                                                                                                                                                                                <div class="agreement__inputs">
-                                                                                                                                                                                                                                    <label for="requirement">Project name</label>
-                                                                                                                                                                                                                                    <input type="text" name="project_name[]">
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <div class="Width__50">
-                                                                                                                                                                                                                                    <div class="agreement__inputs ">
-                                                                                                                                                                                                                                        <label for="title">Date Project</label>
-                                                                                                                                                                                                                                        <input type="date" name="created_at[]">
+                                                                                                                                                                                                                            <div id="require" class="require">
+                                                                                                                                                                                                                                    <span class="delete-btn btn__delete" style="float: right;">Delete</span>
+                                                                                                                                                                                                                                    <div class="agreement__inputs">
+                                                                                                                                                                                                                                        <label for="requirement">Project name</label>
+                                                                                                                                                                                                                                        <input type="text" name="project_name[]">
                                                                                                                                                                                                                                     </div>
+                                                                                                                                                                                                                                    <div class="Width__50">
+                                                                                                                                                                                                                                        <div class="agreement__inputs ">
+                                                                                                                                                                                                                                            <label for="title">Date Project</label>
+                                                                                                                                                                                                                                            <input type="date" name="created_at[]">
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                    <div class="agreement__inputs">
+                                                                                                                                                                                                                                        <label for="title">project description</label>
+                                                                                                                                                                                                                                        <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
+                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                    <br>
+                                                                                                                                                                                                                                    <hr>
+                                                                                                                                                                                                                                    <br>
                                                                                                                                                                                                                                 </div>
-                                                                                                                                                                                                                                <div class="agreement__inputs">
-                                                                                                                                                                                                                                    <label for="title">project description</label>
-                                                                                                                                                                                                                                    <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
-                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                <br>
-                                                                                                                                                                                                                                <hr>
-                                                                                                                                                                                                                                <br>
-                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                            `
+                                                                                                                                                                                                                                `
                 );
             }
         }

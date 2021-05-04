@@ -15,8 +15,8 @@ class CreatePostSkillsTable extends Migration
     {
         Schema::create('post_skills', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('skill_id')->constrained('skills');
-            $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
+            $table->foreignId('skill_id')->nullable()->constrained('skills')->onDelete('set null');
+            $table->foreignId('post_id')->nullable()->constrained('posts')->onDelete('set null');
             $table->timestamps();
         });
     }

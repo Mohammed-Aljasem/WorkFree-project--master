@@ -5,6 +5,7 @@
 
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Admin;
@@ -23,9 +24,8 @@ class AdminsController extends Controller
      */
     public function index()
     {
-     $admins = User::all();
-      return view('admin.manage_admin.index', ['admins'=>$admins]);
-
+        $admins = User::all();
+        return view('admin.manage_admin.index', ['admins' => $admins]);
     }
 
     /**
@@ -35,7 +35,7 @@ class AdminsController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -50,15 +50,15 @@ class AdminsController extends Controller
             'first_name' => 'required',
             'last_name'  => 'required',
             'email'      => 'required|unique:admins|max:255,email',
-            'password'   => 'required',
+            'password'   => 'required|min:6',
 
         ]);
         $adminData = $request->all();
-        $adminData['password'] =Hash::make($request->input('password'));
-//        $adminData['role_id']=1;
+        $adminData['password'] = Hash::make($request->input('password'));
+        //        $adminData['role_id']=1;
 
         $admin = User::create($adminData);
-        return redirect()->back();
+        return redirect()->route('manage');
     }
 
     /**
@@ -69,7 +69,6 @@ class AdminsController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -81,8 +80,7 @@ class AdminsController extends Controller
     public function edit($id)
     {
         $admin = User::find($id);
-        return view('admin.manage_admin.edit',['admin'=> $admin]);
-
+        return view('admin.manage_admin.edit', ['admin' => $admin]);
     }
 
     /**
@@ -95,15 +93,15 @@ class AdminsController extends Controller
     public function update(Request $request, $id)
     {
 
-       $validated = $request->validate([
+        $validated = $request->validate([
             'first_name' => 'required',
             'last_name'  => 'required',
             'email'      => 'required|max:255,email',
-            'password'   => 'required',
+            'password'   => 'required|min:6',
 
         ]);
         $adminData = $request->all();
-        $adminData['password'] =Hash::make($request->input('password'));
+        $adminData['password'] = Hash::make($request->input('password'));
         $admin = User::find($id);
         $admin->fill($adminData)->save();
 
@@ -121,7 +119,7 @@ class AdminsController extends Controller
     {
 
         $admin = User::destroy($id);
-        if($admin){
+        if ($admin) {
             return redirect()->route('manage.index');
         }
     }

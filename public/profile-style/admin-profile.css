@@ -36,7 +36,7 @@
 .profile__card-image{
   width: 80%;
   margin: 0 auto;
-  background-image: url('https://images.unsplash.com/photo-1480429370139-e0132c086e2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80');
+  /* background-image: url('https://nanoguard.in/wp-content/uploads/2019/09/pic.jpg'); */
 background-position: center;
 background-size: cover;
 object-fit: cover;
@@ -75,7 +75,7 @@ border-radius: 1rem;
   -5px -5px 30px   var(--shadow-color);
   height: 100%;
   border-radius: 0.6rem ;
-  background-image: url('https://images.unsplash.com/photo-1480429370139-e0132c086e2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80');
+  background-image: url('https://nanoguard.in/wp-content/uploads/2019/09/pic.jpg');
   background-position: center;
   background-size: cover;
   object-fit: cover;

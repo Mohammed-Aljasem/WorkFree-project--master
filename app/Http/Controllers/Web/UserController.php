@@ -235,12 +235,12 @@ class UserController extends Controller
             if (!empty($userData['project_name'])) {
                 $projectName =  $userData['project_name'];
                 $projectDesc =  $userData['description_project'];
-                $projectCreate =  $userData['created_at'];
+                $projectCreate =  $userData['date_finished'];
                 for ($i = 0; $i < count($projectName); $i++) {
                     $project['user_id'] = Auth::id();
                     $project['project_name'] = $projectName[$i];
                     $project['description']  = $projectDesc[$i];
-                    $project['created_at']   = $projectCreate[$i];
+                    $project['date_finished']   = $projectCreate[$i];
                     ProjectFreelance::create($project);
                 }
             }
@@ -254,7 +254,7 @@ class UserController extends Controller
         $user->fill($new)->save();
 
 
-        return "ok";
+        return redirect('/active/success');
     }
 
     /**

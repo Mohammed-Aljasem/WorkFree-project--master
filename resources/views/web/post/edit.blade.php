@@ -14,6 +14,15 @@
             @csrf{{ csrf_field() }}
             {{ method_field('PUT') }}
             <h1>Create post</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+
+                    @foreach ($errors->all() as $error)
+                        <span>- {{ $error }}</span>
+                    @endforeach
+
+                </div>
+            @endif
             <div class="post__input__title">
                 <label for="title">Post title</label>
                 <input type="text" name="title" value="{{ $post->title }}">
@@ -176,11 +185,11 @@
 
                 let x = document.getElementById('append');
                 $('#skills_container').append(`<div class="skill"><span>${val}</span>
-                  <!-- data -->
-                            <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
-                                <!--  -->
-                            <button type="button" class="delete-btn">X</button>
-                            </div>`);
+                      <!-- data -->
+                                <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                    <!--  -->
+                                <button type="button" class="delete-btn">X</button>
+                                </div>`);
             }
         }
 

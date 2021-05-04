@@ -14,19 +14,28 @@
         {{ method_field('PUT') }}
         <div class="create__agreement__container   part-1">
             <h1 for="">Confirm account</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+
+                    @foreach ($errors->all() as $error)
+                        <span>- {{ $error }}</span>
+                    @endforeach
+
+                </div>
+            @endif
             <div class="inputs__row">
 
                 <div class="sections__title">
                     <div class="agreement__inputs">
                         <label for="title">First name</label>
-                        <input type="text" name="first_name">
+                        <input type="text" name="first_name" value="{{ Auth::user()->first_name }}">
                     </div>
                 </div>
-                <div class="sections__title">
+                <div class=" sections__title">
 
                     <div class="agreement__inputs">
                         <label for="title">Last Name</label>
-                        <input type="text" name="last_name">
+                        <input type="text" name="last_name" value="{{ Auth::user()->last_name }}">
                     </div>
                 </div>
             </div>
@@ -34,13 +43,13 @@
                 <div class="width__75">
                     <div class="agreement__inputs ">
                         <label for="title">Email</label>
-                        <input type="text" name="email">
+                        <input type="text" name="email" value="{{ Auth::user()->email }}">
                     </div>
                 </div>
-                <div class="width__33">
+                <div class=" width__33">
                     <div class="agreement__inputs ">
                         <label for="title">mobile</label>
-                        <input type="number" name="mobile">
+                        <input type="number" name="mobile" value="{{ Auth::user()->mobile }}">
                     </div>
                 </div>
             </div>
@@ -52,6 +61,8 @@
 
                         <select name="country_id" class="select__input">
                             <option selected disabled>Choose a country</option>
+
+                            <option selected>Choose a country</option>
 
                             @if (!empty($countries))
                                 @foreach ($countries as $country)
@@ -67,7 +78,7 @@
                 <div class="Width__50">
                     <div class="agreement__inputs ">
                         <label for="title">Age</label>
-                        <input type="date" name="age">
+                        <input type="date" name="age" value="{{ Auth::user()->age }}">
                     </div>
                 </div>
 
@@ -140,7 +151,7 @@
                             <label for="title">card image</label>
                             <div class="image__position">
                                 <img id="blah"
-                                    src="https://juzx033mfjp334nrs2lynzsu-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/3.-Watermark-Image-Placeholders.png"
+                                    src="https://thumbs.dreamstime.com/b/id-identity-card-flat-style-design-vector-illustration-identification-driver-license-national-electronic-chip-male-photo-139157681.jpg"
                                     width="100%" height="100%" alt="your image" />
                             </div>
                         </div>
@@ -162,9 +173,7 @@
                                     <option value="{{ $skill->id }}">{{ $skill->name }}</option>
                                 @endforeach
                             @endif
-                            {{-- <option value="1">Pure CSS</option>
-                            <option value="2">No JS</option>
-                            <option value="3">Nice!</option> --}}
+
                         </select>
                     </div>
 
@@ -173,7 +182,7 @@
 
                     <div class="agreement__inputs">
                         <label for="title">About</label>
-                        <textarea name="description" id="" cols="30" rows="10"></textarea>
+                        <textarea name="description" id="" cols="30" rows="10">{{ Auth::user()->description }}</textarea>
                     </div>
                 </div>
                 <div class="sections__title flex__between">
@@ -203,7 +212,7 @@
                             <div class="Width__50">
                                 <div class="agreement__inputs ">
                                     <label for="title">Date Project</label>
-                                    <input type="date" name="created_at[]">
+                                    <input type="date" name="date_finished[]">
                                 </div>
                             </div>
                             <div class="agreement__inputs">
@@ -295,10 +304,11 @@
 
 
         let w = $("#skills").change(function() {
-            var val = $(this).children("option:selected").text();
+            var text = $(this).children("option:selected").text();
+            var val = $(this).children("option:selected").val();
 
             $(document).ready(function() {
-                add(val);
+                add(val, text);
             });
 
         });
@@ -347,19 +357,19 @@
         });
 
 
-        function add(val) {
+        function add(val, text) {
 
             if (count < 10) {
 
 
                 let x = document.getElementById('append');
                 $('#skills_container').append(
-                    `<div class="skill"><span>${val}</span>
-                                                                                                                                                                  <!-- data -->
-                                                                                                                                                                  <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
-                                                                                                                                                                  <!--  -->
-                                                                                                                                                                  <button type="button" class="delete-btn">X</button>
-                                                                                                                                                                  </div>`
+                    `<div class="skill"><span>${text}</span>
+                                                                                                                                                                                                                      <!-- data -->
+                                                                                                                                                                                                                      <input class="input" value="${val}"  type="text" name="skills[]" style="display: none;">
+                                                                                                                                                                                                                      <!--  -->
+                                                                                                                                                                                                                      <button type="button" class="delete-btn">X</button>
+                                                                                                                                                                                                                      </div>`
                 );
             }
         }
@@ -372,27 +382,27 @@
                 let x = document.getElementById('requirements');
                 $('#requirements').append(
                     `
-                                    <div id="require" class="require">
-                                            <span class="delete-btn btn__delete" style="float: right;">Delete</span>
-                                            <div class="agreement__inputs">
-                                                <label for="requirement">Project name</label>
-                                                <input type="text" name="project_name[]">
-                                            </div>
-                                            <div class="Width__50">
-                                                <div class="agreement__inputs ">
-                                                    <label for="title">Date Project</label>
-                                                    <input type="date" name="created_at[]">
-                                                </div>
-                                            </div>
-                                            <div class="agreement__inputs">
-                                                <label for="title">project description</label>
-                                                <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
-                                            </div>
-                                            <br>
-                                            <hr>
-                                            <br>
-                                        </div>
-                                        `
+                                                                                        <div id="require" class="require">
+                                                                                                <span class="delete-btn btn__delete" style="float: right;">Delete</span>
+                                                                                                <div class="agreement__inputs">
+                                                                                                    <label for="requirement">Project name</label>
+                                                                                                    <input type="text" name="project_name[]">
+                                                                                                </div>
+                                                                                                <div class="Width__50">
+                                                                                                    <div class="agreement__inputs ">
+                                                                                                        <label for="title">Date Project</label>
+                                                                                                        <input type="date" name="created_at[]">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="agreement__inputs">
+                                                                                                    <label for="title">project description</label>
+                                                                                                    <textarea name="description_project[]" id="" cols="30" rows="10"></textarea>
+                                                                                                </div>
+                                                                                                <br>
+                                                                                                <hr>
+                                                                                                <br>
+                                                                                            </div>
+                                                                                            `
                 );
             }
         }

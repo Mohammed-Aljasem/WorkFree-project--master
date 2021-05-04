@@ -57,7 +57,7 @@ class AgreementController extends Controller
             'description' => 'required',
             'requirement_title' => 'required',
             'require_description' => 'required',
-            'skill' => 'required',
+
             'budget' => 'required',
             'date_start' => 'required',
             'date_end' => 'required',

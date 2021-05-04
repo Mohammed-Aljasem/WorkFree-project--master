@@ -33,13 +33,13 @@ class UserEditController extends Controller
 
             $projectName   =  $projectData['project_name'];
             $projectDesc   =  $projectData['description_project'];
-            $projectCreate =  $projectData['created_at'];
+            $projectCreate =  $projectData['date_finished'];
 
             for ($i = 0; $i < count($projectName); $i++) {
                 $project['user_id'] = Auth::id();
                 $project['project_name'] = $projectName[$i];
                 $project['description']  = $projectDesc[$i];
-                $project['created_at']   = $projectCreate[$i];
+                $project['date_finished']   = $projectCreate[$i];
                 ProjectFreelance::create($project);
             }
         }

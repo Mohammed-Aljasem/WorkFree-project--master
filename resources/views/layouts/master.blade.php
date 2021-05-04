@@ -17,9 +17,7 @@
             <ul class="nav__links" id="nav__links">
                 <a href="{{ url('/') }}" class="social__icons"><i class="fas fa-home"></i></a>
                 <a href="{{ url('/agreements') }}" class="social__icons"><i class="fas fa-briefcase"></i></a>
-                @if (!empty(Auth::user()->role_id == 4))
-                    <a href="{{ url('/manage_posts') }}" class="social__icons "><i class="fas fa-chart-line"></i> </a>
-                @endif
+                <a href="{{ url('/manage_posts') }}" class="social__icons "><i class="fas fa-chart-line"></i> </a>
                 <a href="{{ url('/chat') }}" class="social__icons messages-icon active_link"><i
                         class="far fa-comment-alt"></i> </a>
                 <a href="{{ url('/post') }}" class="social__icons"><i class="far fa-compass"></i></a>

@@ -22,7 +22,12 @@
             <main>
                 <h1><span>{{ $post->title }}</span> {{ $post->category->name }}</h1>
                 <p>{{ $post->description }}</p>
-                <span class="skills">Html</span>
+                @if (!empty($post->skills))
+                    @foreach ($post->skills as $skill)
+                        <span class="skills">{{ $skill->name }}</span>
+
+                    @endforeach
+                @endif
                 <span class="skills">Css</span>
                 <span class="skills">Javascript</span>
                 <br>

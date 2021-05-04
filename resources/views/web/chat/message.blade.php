@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-end mb-4">
             <div class="msg_cotainer_send">
                 {{ $message->message }}
-                <span class="msg_time_send">{{ $message->created_at }}</span>
+                {{-- <span class="msg_time_send">{{ $message->created_at }}</span> --}}
             </div>
             <div class="img_cont_msg">
                 <img src="{{ url('/storage/uploades/imageProfile') }}/{{ Auth::user()->image }}"
@@ -18,7 +18,7 @@
             </div>
             <div class="msg_cotainer">
                 {{ $message->message }}
-                <span class="msg_time">{{ $message->created_at }}</span>
+                {{-- <span class="msg_time">{{ $message->created_at }}</span> --}}
             </div>
         </div>
     @endif

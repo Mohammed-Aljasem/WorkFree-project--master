@@ -33,20 +33,25 @@
                             <div class="card-body contacts_body">
                                 <ui class="contacts">
                                     @foreach ($users as $user)
-                                        <li class="user " id="{{ $user->id }}">
-                                            <div class="d-flex bd-highlight">
-                                                <div class="img_cont">
-                                                    <img src="{{ url('/storage/uploades/imageProfile') }}/{{ $user->image }}"
-                                                        class="rounded-circle user_img">
-                                                    {{-- <span class="online_icon"></span> --}}
+                                        @php
+                                            $checkUser = App\Models\PostRequest::where('user_id', $user->id)->first();
+                                        @endphp
+                                        @if (!empty($checkUser))
+                                            <li class="user " id="{{ $user->id }}">
+                                                <div class="d-flex bd-highlight">
+                                                    <div class="img_cont">
+                                                        <img src="{{ url('/storage/uploades/imageProfile') }}/{{ $user->image }}"
+                                                            class="rounded-circle user_img">
+                                                        {{-- <span class="online_icon"></span> --}}
 
+                                                    </div>
+                                                    <div class="user_info">
+                                                        <span>{{ $user->first_name }} {{ $user->last_name }}</span>
+                                                        <p>Click to chat</p>
+                                                    </div>
                                                 </div>
-                                                <div class="user_info">
-                                                    <span>{{ $user->first_name }} {{ $user->last_name }}</span>
-                                                    <p>Click to chat</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        @endif
                                     @endforeach
 
                                 </ui>
@@ -140,5 +145,176 @@
     @endsection
 
     @section('scripts')
+        <script src="{{ asset('js/pusherNotifications.js') }}"></script>
+        <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var receiver_id = '';
+            var my_id = "{{ Auth::user()->id }}"
 
+            $(document).ready(function() {
+                Pusher.logToConsole = true;
+
+                var pusher = new Pusher('5eb317c3a54fce98d595', {
+                    cluster: 'ap2'
+                });
+
+                var channel = pusher.subscribe('message');
+                channel.bind('App\\Events\\MessageEvent', function(data) {
+                    if (my_id == data.from) {
+                        $('#' + data.to).click();
+                    } else if (my_id == data.to) {
+
+                        if (receiver_id == data.from) {
+
+                            let receiver = data.from;
+
+                            reload(receiver);
+                        } else {
+
+
+                            var pending = parseInt($('#' + data.form + ' ' + '.d-flex .img_cont').find(
+                                '.pending').html());
+
+                            if (pending) {
+                                $('#' + data.from + ' ' + '.d-flex .img_cont').find('.pending').html(
+                                    pending + 1);
+                            } else {
+
+                                $('#' + data.from + ' ' + '.d-flex .img_cont').append(
+                                    '<span class="notification-message"></span>');
+                                // $('#' + data.form).click();
+                                $('.messages-icon').append(
+                                    '<span class="notification-message"></span>');
+                            }
+                        }
+                    }
+                });
+
+                var read = '.d-flex .img_cont .notification-message'
+
+                $('.messages-icon').bind('DOMSubtreeModified', function() {
+
+                });
+
+                function reload(receiver) {
+                    $.ajax({
+                        url: "{{ url('/message') }}" + "/" + receiver,
+                        type: 'get',
+                        data: {},
+                        cache: false,
+                        success: function(data) {
+                            $("#messages").html(data);
+                            scrollToBottomFunc();
+
+                        }
+                    });
+                }
+
+
+                $(".user").click(function() {
+                    $(".user").removeClass("active");
+                    $(this).addClass("active");
+                    $(this).find(read).remove();
+                    receiver_id = $(this).attr('id');
+
+                    $('.messages-icon').find('.notification-message').remove();
+
+                    $.ajax({
+                        url: "{{ url('/message') }}" + "/" + receiver_id,
+                        type: 'get',
+                        data: {},
+                        cache: false,
+                        success: function(data) {
+                            $("#messages").html(data);
+                            scrollToBottomFunc();
+
+                        }
+                    });
+                    $.ajax({
+                        url: "{{ url('/friend') }}" + "/" + receiver_id,
+                        type: 'get',
+                        data: {},
+                        cache: false,
+                        success: function(data) {
+                            $("#speaker").html(data);
+
+
+                        }
+                    });
+                });
+
+                $(document).on('keyup', '#input-text-msg', function(e) {
+                    var message = $(this).val();
+
+
+                    if (e.keyCode == 13 && message != '' && receiver_id != '') {
+                        $(this).val('');
+                        var datastr = "receiver_id=" + receiver_id + "message=" + message;
+
+                        $.ajax({
+                            type: "post",
+                            url: "{{ url('/message') }}",
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "receiver_id": receiver_id,
+                                "message": message,
+                            },
+                            cache: false,
+                            success: function(data) {
+
+
+                            },
+                            error: function(jqXHR, status, arr) {
+
+                            },
+                            complete: function() {
+
+                            }
+                        })
+                    };
+
+                    $(".send_btn").click(function(e) {
+                        var message = $('#input-text-msg').val();
+                        $('#input-text-msg').val('');
+
+
+                        var datastr = "receiver_id=" + receiver_id + "message=" + message;
+                        $.ajax({
+                            type: "post",
+                            url: "{{ url('/message') }}",
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "receiver_id": receiver_id,
+                                "message": message,
+                            },
+                            cache: false,
+                            success: function(data) {
+
+
+                            },
+                            error: function(jqXHR, status, arr) {
+
+                            },
+                            complete: function() {
+
+                            }
+                        })
+                        $('#' + receiver_id).click();
+
+                    })
+                });
+            });
+
+            function scrollToBottomFunc() {
+                $('#messages').animate({
+                    scrollTop: $('#messages').get(0).scrollHeight
+                }, 50);
+            }
+
+
+            var messageBody = document.querySelector('#messages');
+            messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+        </script>
     @endsection

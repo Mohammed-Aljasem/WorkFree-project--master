@@ -20,5 +20,6 @@ class UsersRequestsController extends Controller
     $userData['confirm_account'] = 1;
     $user = User::find($id);
     $user->fill($userData)->save();
+    return redirect('admin/users_requests');
   }
 }

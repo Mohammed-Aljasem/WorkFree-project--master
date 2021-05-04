@@ -152,9 +152,19 @@ class User extends Authenticatable
 
             if (Auth::attempt(['email' => $email, 'password' => $password])) {
                 $user = Auth::user();
+                if (Auth::user()->blocked != 1) {
 
-                return redirect(url('admin/manage'));
+                    if (Auth::user()->role_id == 1) {
+                        return redirect(url('admin/manage'));
+                    } else {
+                        return redirect(url('/'));
+                    }
+                } else {
+                    session()->flash('error', 'you are blocked');
+                    return redirect()->back();
+                }
             }
+            session()->flash('error', 'Incorrect email or password');
             return redirect()->back();
         } catch (Exception $e) {
 
@@ -171,5 +181,22 @@ class User extends Authenticatable
         Session::flush(); // remove session
 
         return redirect(url('/login'));
+    }
+    public static function block($id)
+    {
+
+        $user = User::findOrFail($id);
+
+        if ($user->blocked == 1) {
+            $userdata['blocked'] = 0;
+            $user->fill($userdata)->save();
+            session()->flash('success2', trans('messages.user_unblock_successfully'));
+            return redirect()->back();
+        } else {
+            $userdata['blocked'] = 1;
+            $user->fill($userdata)->save();
+            session()->flash('success', trans('messages.user_block_successfully'));
+            return redirect()->back();
+        }
     }
 }

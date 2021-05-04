@@ -16,6 +16,7 @@ class PostRequestController extends Controller
         $this->middleware('confirm-profile');
     }
 
+
     public function index()
     {
         $posts =  Post::where('user_id', Auth::id())->with('users')->get();

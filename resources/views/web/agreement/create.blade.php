@@ -12,6 +12,15 @@
     <div class="create__agreement__container">
         <form action="{{ route('agreements.store') }}" method="post">
             @csrf
+            @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+
+                    @foreach ($errors->all() as $error)
+                        <span>- {{ $error }}</span>
+                    @endforeach
+
+                </div>
+            @endif
             <div class="sections__title">
                 <h3 for="">Project name</h3>
                 <div class="agreement__inputs">
@@ -20,6 +29,7 @@
                     <input type="text" name="freelance_id" style="display: none" value="{{ $user_id }}">
                 </div>
             </div>
+
             <div class="sections__title">
                 <h3 for="">Agreement Description</h3>
                 <div class="agreement__inputs">
@@ -186,11 +196,11 @@
 
                 let x = document.getElementById('append');
                 $('#skills_container').append(`<div class="skill"><span>${val}</span>
-                                  <!-- data -->
-                                        <input class="input" value="${val}"  type="text" name="skill[]" style="display: none;">
-                                            <!--  -->
-                                        <button type="button" class="delete-btn">X</button>
-                                        </div>`);
+                                          <!-- data -->
+                                                <input class="input" value="${val}"  type="text" name="skill[]" style="display: none;">
+                                                    <!--  -->
+                                                <button type="button" class="delete-btn">X</button>
+                                                </div>`);
             }
         }
 
@@ -203,20 +213,20 @@
 
                 let x = document.getElementById('requirements');
                 $('#requirements').append(`
-                                        <div id="require">
-                                        <span class="delete-btn btn__delete" style="float: right;">Delete</span>
-                                        <div class="agreement__inputs">
-                                        <label for="requirement">Requirement   </label>
-                                        <input type="text" name="requirement_title[]">
-                                        </div>
-                                        <div class="agreement__inputs">
-                                        <label for="title">Input Title</label>
-                                        <textarea name="require_description[]" id="" cols="30" rows="10"></textarea>
-                                        </div>
-                                        <br>
-                                        <hr>
-                                        <br>
-                                        </div>`);
+                                                <div id="require">
+                                                <span class="delete-btn btn__delete" style="float: right;">Delete</span>
+                                                <div class="agreement__inputs">
+                                                <label for="requirement">Requirement   </label>
+                                                <input type="text" name="requirement_title[]">
+                                                </div>
+                                                <div class="agreement__inputs">
+                                                <label for="title">Input Title</label>
+                                                <textarea name="require_description[]" id="" cols="30" rows="10"></textarea>
+                                                </div>
+                                                <br>
+                                                <hr>
+                                                <br>
+                                                </div>`);
             }
         }
 

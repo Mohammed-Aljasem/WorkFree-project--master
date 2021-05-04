@@ -12,7 +12,7 @@
 }
 
 .post__container{
-width: 750px;
+width: 650px;
 height: 370px;
 display: flex;
 flex-direction: row;
@@ -80,11 +80,26 @@ position: relative;
 .budget__part{
   width: 30%;
   text-align: center;
+  word-wrap: break-word;
 }
 .skills__part{
   width: 68%;
   overflow: hidden;
+  overflow-y: scroll;
 }
+.skills__part::-webkit-scrollbar {
+  width: 6px;
+}
+.skills__part::-webkit-scrollbar-track {
+
+border-radius: 10px;
+}
+.skills__part::-webkit-scrollbar-thumb {
+  background: rgb(212, 212, 212);
+    border-radius: 10px;
+
+}
+
 
 .skills__part span{
   display: inline-block;

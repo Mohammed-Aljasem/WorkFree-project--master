@@ -86,10 +86,11 @@ main h1 {
   font-size: 0.9em;
   margin-bottom: 0.5rem;
   overflow-wrap: break-word;
+  color: #333 ;
 }
 main h1 span {
   display: block;
-  color: var(--highlight);
+
   font-weight: bolder;
   
 }

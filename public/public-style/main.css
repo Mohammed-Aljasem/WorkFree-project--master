@@ -24,9 +24,17 @@
   --font-color-titles:  #35304e;
   --font-color-spans:  #443e60;
   --font-background:  rgba(255, 255, 255, 0.9);
-  --font-color-paragraph: rgb(99, 75, 159);;
-  --font-color-border: rgb(166, 74, 251);;
+  --font-color-paragraph: rgb(99, 75, 159);
+  --font-color-border: rgb(166, 74, 251);
   --shadow-color: rgba(158, 131, 226, 0.1);
+}
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    font-family: 'Rubik', sans-serif;
 }
 
 h6,
@@ -50,6 +58,9 @@ button{
   color: var(--font-color-titles);
   text-decoration: none;
 }
+button:hover{
+  cursor: pointer;
+}
 span{
   color: var(--font-color-spans);
 }
@@ -60,5 +71,48 @@ p{
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+
+}
+
+.primary__btn, .normal__btn{
+  
+  background: none;
+  padding: 0.4rem 0.8rem !important;
+  border: 1px solid var(--font-color-border);
+  min-width: 6rem;
+  height: 2.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2em;
+  margin: 0 1rem;
+  /* margin-top: 1rem; */
+  background-color: var( --font-background);
+  box-shadow: 
+  5px 5px 30px   var(--shadow-color),
+  -5px -5px 30px   var(--shadow-color);
+  
+}
+
+.primary__btn{
+  color: aliceblue;
+  background-color: blueviolet;
+}
+.primary__btn:hover{
+  background-color: rgb(166, 74, 251);
+}
+
+.alert{
+	margin-bottom: 1rem;
+	background-color: rgb(255, 192, 192);
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.5rem;
+
+}
+.alert span{
+color: rgb(196, 24, 24);
+margin-bottom: 0.5rem;
+display: block;
 
 }

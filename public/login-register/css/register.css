@@ -34,19 +34,6 @@ margin-bottom: 0.5rem;
 display: block;
 
 }
-.alert-green{
-	margin-bottom: 1rem;
-	background-color: rgba(180, 100, 255, 0.1);
-	padding: 0.5rem 0.5rem;
-	border-radius: 0.5rem;
-}
-.alert-green span{
-color: rgb(99, 75, 159);
-margin-bottom: 0.5rem;
-display: block;
-}
-
-
 .primary__btn, .normal__btn{
   
   background: none;

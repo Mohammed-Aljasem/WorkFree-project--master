@@ -15,7 +15,7 @@ class CreateProjectFreelancesTable extends Migration
     {
         Schema::create('project_freelancers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->string('project_name');
             $table->time('date_finished');
             $table->string('description');

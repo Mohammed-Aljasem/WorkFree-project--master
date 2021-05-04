@@ -15,8 +15,8 @@ class CreatePostRequestsTable extends Migration
     {
         Schema::create('post_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained('posts');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('post_id')->nullable()->constrained('posts')->onDelete('set null');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->smallInteger('accepted');
             $table->timestamps();
         });

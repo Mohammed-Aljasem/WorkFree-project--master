@@ -17,10 +17,10 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('image',350)->nullable();
+            $table->string('image', 350)->nullable();
             $table->tinyInteger('from')->nullable();
             $table->tinyInteger('to')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->smallInteger('approved_post')->nullable();
             $table->smallInteger('blocked')->nullable();
             $table->smallInteger('status')->nullable();

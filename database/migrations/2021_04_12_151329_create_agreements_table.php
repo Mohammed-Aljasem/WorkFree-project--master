@@ -17,8 +17,8 @@ class CreateAgreementsTable extends Migration
             $table->id();
             $table->string('project_title');
             $table->string('description');
-            $table->foreignId('client_id')->constrained('users');
-            $table->foreignId('freelance_id')->constrained('users');
+            $table->foreignId('client_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('freelance_id')->nullable()->constrained('users')->onDelete('set null');
             $table->date('date_start');
             $table->date('date_end');
             $table->smallInteger('budget');

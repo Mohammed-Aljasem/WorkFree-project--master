@@ -93,11 +93,15 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::destroy($id);
-        if ($user) {
-            return redirect()->route('users.index');
-        } else {
-            return redirect()->back();
+        try {
+
+            $user = User::block($id);
+            return $user;
+        } catch (Exception $e) {
+
+            report($e);
+            return $e->getMessage();
+            return redirect('/admin/somethingwrong');
         }
     }
 }

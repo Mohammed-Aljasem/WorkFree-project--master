@@ -24,8 +24,8 @@ class CreateUsersTable extends Migration
             $table->string('card_image')->nullable();
             $table->date('age')->nullable();
             $table->string('description', 500)->nullable();
-            $table->foreignId('role_id')->nullable()->constrained('roles');
-            $table->foreignId('country_id')->nullable()->constrained('countries');
+            $table->foreignId('role_id')->nullable()->constrained('roles')->onDelete('set null');
+            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->bigInteger('card_id')->unique()->nullable();

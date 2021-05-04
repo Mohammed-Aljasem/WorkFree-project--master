@@ -53,7 +53,7 @@
                     @if (!empty($posts))
                         @foreach ($posts as $key => $post)
 
-                            @if ($post->approved_post == 1 && $post->user_id != Auth::id())
+                            @if ($post->approved_post == 1)
 
                                 <div class="post__container ">
                                     <div class="post__sub-container-one ">
@@ -123,7 +123,7 @@
                                                         <a href="{{ route('post.destroy', $post->id) }}"><button
                                                                 class="btn__apply">delete</button></a>
                                                     </form>
-                                                @elseif(Auth::user()->role_id ==3 )
+                                                @elseif(Auth::user()->role_id ==3 && Auth::user()->confirm_account == 1)
                                                     @php
                                                         $checkPost = App\Models\PostRequest::where('post_id', $post->id)
                                                             ->where('user_id', Auth::id())

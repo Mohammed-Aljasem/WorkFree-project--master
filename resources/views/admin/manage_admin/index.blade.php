@@ -6,19 +6,19 @@
                 <h5 class="title">Add Admin</h5>
             </div>
             <div class="card-body">
-                <form action="{{route('manage.store')}}" method="post">
+                <form action="{{ route('manage.store') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 pr-md-1">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input type="text" name="first_name" class="form-control" placeholder="Company" >
+                                <input type="text" name="first_name" class="form-control" placeholder="Company">
                             </div>
                         </div>
                         <div class="col-md-6 pl-md-1">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" name="last_name" class="form-control" placeholder="Last Name" >
+                                <input type="text" name="last_name" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
                     </div>
@@ -83,39 +83,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($admins as $admin)
-                                <tr>
-                                    <td>
-                                        {{$admin->first_name}}
-                                    </td>
-                                    <td>
-                                        {{$admin->last_name}}
-                                    </td>
-                                    <td>
-                                        {{ $admin->email}}
-                                    </td>
-                                    <td class="text-center">
-                                        {{$admin->role_id}}
-                                    </td>
-                                    <td class="text-center">
+                            @foreach ($admins as $admin)
+                                @if ($admin->role_id == 1)
+                                    <tr>
+                                        <td>
+                                            {{ $admin->first_name }}
+                                        </td>
+                                        <td>
+                                            {{ $admin->last_name }}
+                                        </td>
+                                        <td>
+                                            {{ $admin->email }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $admin->role_id }}
+                                        </td>
+                                        <td class="text-center">
 
-                                        <form method="post" action="{{ route('manage.destroy', $admin->id) }}">
-                                        {{ csrf_field() }}
-                                           {{ method_field('DELETE') }}
-                                        <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                                           <a style="color: white" href="{{ route('manage.edit', $admin->id) }}">
-                                               <i class="tim-icons icon-settings"></i>
-                                           </a>
-                                        </button>
-                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
-                                           <a style="color: white" href="{{ route('manage.destroy', $admin->id) }}">
-                                            <i class="tim-icons icon-simple-remove"></i>
-                                           </a>
-                                        </button>
-                                        </form>
+                                            <form method="post" action="{{ route('manage.destroy', $admin->id) }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="button" rel="tooltip"
+                                                    class="btn btn-success btn-sm btn-round btn-icon">
+                                                    <a style="color: white" href="{{ route('manage.edit', $admin->id) }}">
+                                                        <i class="tim-icons icon-settings"></i>
+                                                    </a>
+                                                </button>
+                                                <button type="submit" rel="tooltip"
+                                                    class="btn btn-danger btn-sm btn-round btn-icon">
+                                                    <a style="color: white"
+                                                        href="{{ route('manage.destroy', $admin->id) }}">
+                                                        <i class="tim-icons icon-simple-remove"></i>
+                                                    </a>
+                                                </button>
+                                            </form>
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

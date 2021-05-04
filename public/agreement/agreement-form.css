@@ -90,8 +90,12 @@
   padding:1rem 2rem;
 }
 .header__user__image{
-  height: 100%;
+  height: 5.3rem;
   width: 5.3rem;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  object-fit: cover;
 }
 .header__user__image img{
   width: 100%;
@@ -195,7 +199,7 @@ padding:0.8rem;
     border-radius: 0.5rem;
 }
 .footer__dates{
-  width: 30%;
+  width: 40%;
   text-align: center;
   
 }
@@ -212,15 +216,14 @@ padding:0.8rem;
   flex-direction: column;
   padding: 0.1rem 1rem;
   text-align: center;
- 
-
-    border-radius: 0.5rem;
+  border-radius: 0.5rem;
   margin-right: 1rem;
   border-radius: 0.5rem;
-  width:40%;
+  width:100%;
+
 }
 .time__title{
-  font-size: 1.3em;
+  font-size: 1.2em;
 
 }
 .footer__budget{

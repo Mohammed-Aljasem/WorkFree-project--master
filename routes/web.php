@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 ################################ Login user ######################################
 //route for login user
-Route::get('/login', [\App\Http\Controllers\Web\LoginController::class, 'index'])->middleware('auth_admin')->name('login.user');
+Route::get('/login', [\App\Http\Controllers\Web\LoginController::class, 'index'])->name('login.user');
 Route::post('/login', [\App\Http\Controllers\Web\LoginController::class, 'login']);
 Route::get('/register', [\App\Http\Controllers\Web\RegisterController::class, 'index']);
 Route::Post('/register', [\App\Http\Controllers\Web\RegisterController::class, 'register']);
@@ -50,18 +50,19 @@ Route::get('/home', [\App\Http\Controllers\Web\HomeController::class, 'index']);
 Route::group(['prefix' => '/', 'middleware' => ['auth_admin']], function () {
     Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index']);
     //route for testing
-    Route::resource('/post', '\App\Http\Controllers\Web\PostController');
-    Route::get('/post/{post}', [\App\Http\Controllers\Web\SearchController::class, 'search']);
+    Route::resource('/post',     '\App\Http\Controllers\Web\PostController');
+    Route::post('/post/search',  [\App\Http\Controllers\Web\SearchController::class, 'search']);
 
-    Route::resource('profile', '\App\Http\Controllers\Web\UserController');
-    Route::get('projects/{id}', [\App\Http\Controllers\Web\UserEditController::class, 'editProjects']);
+    Route::get('projects/{id}',  [\App\Http\Controllers\Web\UserEditController::class, 'editProjects']);
     Route::post('projects/edit', [\App\Http\Controllers\Web\UserEditController::class, 'edit']);
+    Route::resource('profile',     '\App\Http\Controllers\Web\UserController');
     Route::resource('/agreements', '\App\Http\Controllers\Web\AgreementController');
 
 
-    Route::get('/manage_posts',        [\App\Http\Controllers\Web\PostRequestController::class, 'index']);
+    Route::get('/manage_posts',         [\App\Http\Controllers\Web\PostRequestController::class, 'index']);
     Route::get('/category/{id}',        [\App\Http\Controllers\Web\CategoryFilterController::class, 'filter']);
     Route::get('/users_category/{id}',  [\App\Http\Controllers\Web\CategoryFilterController::class, 'userCategory']);
+    Route::get('/your/posts/{id}',      [\App\Http\Controllers\Web\CategoryFilterController::class, 'userPost']);
 
     Route::get('/send_request/{id}',   [\App\Http\Controllers\Web\PostRequestController::class, 'sendRequest']);
     Route::get('/users_requests/{id}', [\App\Http\Controllers\Web\PostRequestController::class, 'sendRequest']);
@@ -83,6 +84,9 @@ Route::group(['prefix' => '/', 'middleware' => ['auth_admin']], function () {
     // Route::Post('/test', [\App\Http\Controllers\TestController::class, 'store']);
     Route::get('/active/account', function () {
         return view('web.users.active_account');
+    });
+    Route::get('/active/success', function () {
+        return view('web.users.success_message');
     });
 });
 

@@ -16,9 +16,16 @@ use Pusher\Pusher;
 
 class ChatController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth_admin');
+        $this->middleware('confirm-profile', ['except' => ['index']]);
+    }
+
     public function index()
     {
-        $users = User::Where('id', '!=', Auth::user()->id)->get();
+        $users = User::Where('id', '!=', Auth::user()->id)->where('confirm_account', 1)->get();
         // return   $users = User::Where('id', '!=', Auth::user()->id)->with('messageTo')->get();
         // $users = Message::Where('from', '!=', Auth::id())->orWhere('to', '!=', Auth::id())->with('userTo')->get();
 
@@ -83,7 +90,7 @@ class ChatController extends Controller
     public function userChat($id)
     {
         $user = User::find($id);
-        $users = User::Where('id', '!=', Auth::user()->id)->get();
+        $users = User::Where('id', '!=', Auth::user()->id)->where('confirm_account', 1)->where('role_id', '!=', 1)->get();
 
         $user_id = $id;
         $my_id = Auth::user()->id;

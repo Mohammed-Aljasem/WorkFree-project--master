@@ -69,7 +69,7 @@
                                             </button>
                                         </a>
                                     @elseif($request->accepted == 1)
-                                        <a href="{{ url('chat/', $user->id) }}">
+                                        <a href="{{ url('chat/' . $user->id) }}">
                                             <button class="primary">
                                                 Message
                                             </button>

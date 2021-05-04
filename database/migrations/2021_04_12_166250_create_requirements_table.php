@@ -17,7 +17,7 @@ class CreateRequirementsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->foreignId('agreement_id')->constrained('agreements');
+            $table->foreignId('agreement_id')->nullable()->constrained('agreements')->onDelete('set null');
             $table->timestamps();
         });
     }

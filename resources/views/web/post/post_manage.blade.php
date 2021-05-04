@@ -33,17 +33,18 @@
                             <div class="content__center">
 
                                 <h3 style="color:
-                                            @if ($post->status == 0) orange
-                                @elseif($post->status == 1)
+                                                @if ($post->approved_post == 0) orange
+
+                                @elseif($post->approved_post == 1)
                                     green
-                                @elseif($post->status == 2)
+                                @elseif($post->approved_post == 2)
                                     red @endif
                                     ;">
-                                    @if ($post->status == 0)
+                                    @if ($post->approved_post == 0)
                                         Pending
-                                    @elseif($post->status == 1)
+                                    @elseif($post->approved_post == 1)
                                         approved
-                                    @elseif($post->status == 2)
+                                    @elseif($post->approved_post == 2)
                                         disapprove
                                     @endif
                                 </h3>

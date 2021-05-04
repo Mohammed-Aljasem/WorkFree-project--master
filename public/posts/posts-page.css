@@ -29,8 +29,8 @@
 }
 .posts_search{
   width: 100%;
-  position: sticky;
-  top: 3%;
+  /* position: sticky;
+  top: 3%; */
 }
 .search__input__field{
 height: 3rem;
@@ -78,17 +78,25 @@ z-index: 20;
   justify-content: space-between;
   align-items: center;
 }
-.categories__section{
+.section_1{
+
   position: sticky;
-  top: 3%;
+  top: 25%;
+}
+.section_2{
+  top: 3.3%;
+
+  position: sticky;
+}
+.categories__section{
   width: 95%;
 
   background-color: var( --font-background);
   box-shadow: 
   5px 5px 30px   var(--shadow-color),
   -5px -5px 30px   var(--shadow-color);
-  margin: 0 auto;
-  min-height: 12rem;
+  margin: 1rem auto 0;
+  min-height: 4rem ;
   padding: 0.5rem;
   border-radius: 0.3rem;
   display: flex;
@@ -113,14 +121,14 @@ z-index: 20;
 }
 
 .add__post{
-margin-bottom: 1rem;
+/* margin-bottom: 1rem; */
 }
 
 @media (max-width:1024px){
   .posts__container{
     flex-direction: column;
     width: 95%;
-    margin: 1rem auto  5rem auto;
+    margin: 1rem auto  1rem auto;
     position: relative;
   }
   .categories__aside{
@@ -135,7 +143,7 @@ margin-bottom: 1rem;
   }
   .posts__section{
     width: 100%;
-    margin-bottom: 6rem;
+
     
   }
   .categories__section{
@@ -154,7 +162,7 @@ margin-bottom: 1rem;
     font-size: 0.8em;
   }
   .add__post{
-    width: 100%;
+    width: 45%;
     
   }
 }
@@ -168,6 +176,10 @@ margin-bottom: 1rem;
     width: 100%;
   }
   .section__cat{
-    width: 50%;
+    width: 45%;
+  }
+  .add__post h2{
+    font-size: 1em;
+    
   }
 }

@@ -10,6 +10,16 @@
   border-radius: 15px !important;
   background-color: rgba(0,0,0,0.4) !important;
 }
+.h-100 {
+/* min-width: 2000px!important; */
+}
+.nav__links{
+  padding: 0;
+}
+.work{
+  display: inline !important;
+
+}
 .contacts_body{
   padding:  0.75rem 0 !important;
   overflow-y: auto;
@@ -21,6 +31,10 @@
 .card-header{
   border-radius: 15px 15px 0 0 !important;
   border-bottom: 0 !important;
+}
+.card-header{
+  border-radius:15px 15px 0 0  !important;
+  border-top: 0 !important;
 }
 .card-footer{
   border-radius: 0 0 15px 15px !important;
@@ -284,6 +298,11 @@ border-radius: 10px;
   background: rgb(212, 212, 212);
     border-radius: 10px;
 
+}
+@media(max-width: 768px){
+ .py-12{
+   margin: 1rem 0 !important;
+ }
 }
 @media(max-width: 576px){
   .contacts_card{

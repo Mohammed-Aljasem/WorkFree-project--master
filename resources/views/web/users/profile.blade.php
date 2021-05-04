@@ -28,8 +28,10 @@
 
                     @endif
                 </div>
-                <a href="{{ route('profile.edit', $user->id) }}" class="profile__edit"><i
-                        class="fas fa-user-edit"></i></a>
+                @if (Auth::id() == $user->id)
+                    <a href="{{ route('profile.edit', $user->id) }}" class="profile__edit"><i
+                            class="fas fa-user-edit"></i></a>
+                @endif
             </div>
             <div class="profile__about">
                 <div class="about">
@@ -38,7 +40,7 @@
                         {{ $user->description }}
                     </p>
                 </div>
-                @if (Auth::user()->role_id == 3)
+                @if ($user->role_id == 3)
                     <div class="skills__profile">
                         <h3>Skills</h3>
                         @if (!empty($user->skills))
@@ -54,16 +56,18 @@
                 @endif
             </div>
         </div>
-        @if (Auth::user()->role_id == 3)
+        @if ($user->role_id == 3)
             <div class="profile__section__two">
                 <h2>Projects</h2>
-                <a href="{{ url('projects/' . $user->id) }}" class="profile__edit"><i class="far fa-edit"></i></a>
+                @if (Auth::id() == $user->id)
+                    <a href="{{ url('projects/' . $user->id) }}" class="profile__edit"><i class="far fa-edit"></i></a>
+                @endif
                 @if (!empty($user->projects))
                     @foreach ($user->projects as $project)
                         <div class="profile__projects">
                             <div class=".project__detial">
                                 <h4>{{ $project->project_name }}</h4>
-                                <span>{{ \Carbon\Carbon::parse($project->created_at)->format('Y-m') }}</span>
+                                <span>{{ $project->date_finished }}</span>
                                 <p>{{ $project->description }}</p>
                             </div>
                         </div>

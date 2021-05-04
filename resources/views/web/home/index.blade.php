@@ -11,10 +11,14 @@
 @section('master')
     <section class="section">
         <div class="landing__container">
+            <div class="effect__landing"></div>
             <div class="welcome__message">
                 <h1></h1>
                 <p></p>
-                <button>Join us</button>
+                <a href="{{ url('register') }}">
+
+                    <button>Join us</button>
+                </a>
             </div>
 
         </div>
@@ -27,7 +31,7 @@
             <div class="landing__categories">
                 @if (!empty($categories))
                     @foreach ($categories as $category)
-                        <a href="www.google.com" class="category section1"
+                        <a href="{{ url('/users_category/' . $category->id) }}" class="category section1"
                             style="background-image: url('{{ url('/storage/uploades/categories') }}/{{ $category->image }}')">
                             <div class="effect__category">
                                 <h3>{{ $category->name }}</h3>

@@ -66,7 +66,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->all();
+        // try {
+
+        //     $validateForm = Validator::make($request->all(), [
+        //         'name_en' => ['required', 'string'],
+        //         'name_ar' => ['required', 'string'],
+        //         'image' => ['mimes:jpeg,jpg,png,gif']
+        //     ]);
+
+        //     if ($validateForm->fails()) {
+
+        //         session()->flash('errors', $validateForm->errors());
+        //         return redirect()->back();
+        //     }
+
+
+
+
+
+        //     session()->flash('success2', trans('messages.data_has_been_added_successfully'));
+        //     return redirect()->route('categories.index');
+        // } catch (Exception $e) {
+
+        //     return $e->getMessage();
+        //     report($e);
+        //     return redirect('/admin/somethingwrong');
+        // }
+
+
+
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
